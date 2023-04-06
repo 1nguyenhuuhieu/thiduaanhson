@@ -1,3 +1,4 @@
+{% load static %}
 <!doctype html>
 <html lang="en">
   <head>
@@ -8,7 +9,7 @@
     <!-- CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
 <script src="https://kit.fontawesome.com/b2208e09de.js" crossorigin="anonymous"></script>
-<link rel="stylesheet" href="css/mystyle.css">
+<link rel="stylesheet" href="{% static 'css/mystyle.css' %}">
     <!-- End CSS -->
 
     <!-- Font -->
@@ -26,7 +27,7 @@
     <!-- Script -->
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <script src="js/parallax.js"></script>
+    <script src="{% static 'js/parallax.js' %}"></script>
     <!-- End Script -->
 
     <title>Trang chủ - Trường THCS Anh Sơn</title>
@@ -151,7 +152,7 @@
         <div class="container pt-5">
         <div class="row    justify-content-center pt-5 pb-5 ">
           <div class="col-2 no-gutters d-flex align-items-center justify-content-end mr-2 ">
-            <img src="imgs/logo.png" alt="" class="img-fluid border border-info rounded-circle shadow" style=" 
+            <img src="{% static 'imgs/logo.png' %}" alt="" class="img-fluid border border-info rounded-circle shadow" style=" 
             max-width:120px;
             width: auto;
             height: auto;
@@ -195,7 +196,7 @@
   <nav class="navbar navbar-expand-lg navbar-light bg-light  py-0 ">
 
     <div class="container">
-    <a class="navbar-brand" href="#"><img src="imgs/logo.png" alt="" width=40px></a>
+    <a class="navbar-brand" href="#"><img src="{% static 'imgs/logo.png' %}" alt="" width=40px></a>
      <h5>thcsanhson.com</h5>
     
     
@@ -359,7 +360,7 @@
     <div class="container">
       <div class="row justify-content-center align-items-center">
         <div class="col-md-4  mb-md-0 col-5 p-2 ">
-          <img src="imgs/images2220278_1.jpg" alt="" class="img-fluid rounded-lg border-right-0">
+          <img src="{% static 'imgs/images2220278_1.jpg' %}" alt="" class="img-fluid rounded-lg border-right-0">
         </div>
         <div class="col-md-4 col-7 p-1 p-lg-3">
           <p></p>
@@ -1413,7 +1414,7 @@
 
           
         <h3 class="mb-2 thaytroviet" style="font-family: 'Dancing Script', cursive;">Thầy trò "Năng Khiếu" viết</h3>
-<img src="imgs/line.png" alt="" class="img-fluid mt-4" style="max-width: 200px">
+<img src="{% static 'imgs/line.png' %}" alt="" class="img-fluid mt-4" style="max-width: 200px">
 <i class="fas fa-feather-alt mb-3" style="font-size:40px"></i>
 
 
@@ -1432,7 +1433,7 @@
             <div class="card text-center tacgia mb-3" >
          
              
-              <img src="imgs/ngoctrinh.jpg" class="card-img-top rounded-circle  px-5" alt="...">
+              <img src="{% static 'imgs/ngoctrinh.jpg' %}" class="card-img-top rounded-circle  px-5" alt="...">
               <div class="card-body">
             
                   
@@ -1494,7 +1495,7 @@
             <div class="card mb-3 border-0 mt-2" >
               <div class="row align-items-center no-gutters">
                 <div class="col-3 text-center">
-                  <img src="imgs/ngoctrinh.jpg" class="card-img rounded-circle" alt="..." >
+                  <img src="{% static 'imgs/ngoctrinh.jpg' %}" class="card-img rounded-circle" alt="..." >
 
                 <a href="#" class="btn btn-sm btn-outline-dark  mt-2 p-1" style="font-size: 9px"><i class="fas fa-plus mr-1"></i>Quan tâm</a>
 
@@ -1637,7 +1638,7 @@
         <div class="col-lg-4  d-flex align-items-end  justify-content-end ">
          
           <div class="d-none d-lg-block">
-          <img src="imgs/teacher_gapgo.png" class="img-fluid  m-0" style="width: 400px ; " alt="">
+          <img src="{% static 'imgs/teacher_gapgo.png' %}" class="img-fluid  m-0" style="width: 400px ; " alt="">
       
          
         </div>
@@ -1654,7 +1655,7 @@
   
             <a href="#" class="text-decoration-none " >Xem tất cả <i class="fas fa-arrow-right ml-2"></i></a>
           </div>
-          <div class="d-lg-none"> <img src="imgs/teacher_gapgo.png" class="img-fluid" ></div>
+          <div class="d-lg-none"> <img src="{% static 'imgs/teacher_gapgo.png' %}" class="img-fluid" ></div>
          
   
           <h3 class="card-title fontthaytroviet mt-3"  style="font-weight: bold;">Nguyễn Văn Học Giỏi
@@ -1828,7 +1829,7 @@
         <div class="col-lg-6 text-center ">
   
           <h3 class="mb-2 fontsizeaboutus" style="font-family: 'Charmonman', cursive">Trường "Năng Khiếu"</h3>
-          <img src="imgs/swish.png" alt="" class="img-fluid mt-4" style="max-width: 200px">
+          <img src="{% static 'imgs/imgs/swish.png' %}" alt="" class="img-fluid mt-4" style="max-width: 200px">
            <i class="fas fa-pen-fancy mb-3" style="font-size:40px"></i>
   
   

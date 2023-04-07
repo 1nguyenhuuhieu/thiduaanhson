@@ -123,6 +123,7 @@
     background-image: url("../imgs/spotlight.png");
     background-repeat: no-repeat;
     background-size: 100%;
+    min-height: 400px;
 
   }
 

@@ -98,125 +98,20 @@
   </div>
   <!-- end hidden on smaller screen than lg -->
   <!-- nav bar -->
-  <nav class="navbar navbar-expand-lg navbar-light bg-light  py-0 sticky-top shadow-sm ">
-    <div class="container">
-      <a class="navbar-brand" href="#"><img src="{% static 'imgs/logo_nobackground.png' %}" alt="" width=40px></a>
-      <h5 class="m-0">TĐKT ANH SƠN</h5>
-      <div>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse"
-          data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <i class="fas fa-search"></i>
-        </button>
-        <button class="navbar-toggler border-0" type="button" data-toggle="collapse"
-          data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-          aria-label="Toggle navigation">
-          <i class="fas fa-ellipsis-h"></i>
-        </button>
-      </div>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto">
-          <!-- <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li> -->
-          <li class="nav-item  dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Tin
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tin">Tất cả</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/ád">Thông báo</a>
-              <a class="dropdown-item" href="ádfsdf">thông báo 2</a>
-            </div>
-          </li>
-          <li class="nav-item  dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Lịch
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tin">Tất cả</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/ád">Thông báo</a>
-              <a class="dropdown-item" href="ádfsdf">thông báo 2</a>
-            </div>
-          </li>
-          <li class="nav-item  dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Điểm
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tin">Tất cả</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/ád">Thông báo</a>
-              <a class="dropdown-item" href="ádfsdf">thông báo 2</a>
-            </div>
-          </li>
-          <li class="nav-item  dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              Khác
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="/tin">Tất cả</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="/ád">Thông báo3</a>
-              <a class="dropdown-item" href="ádfsdf">thông báo 24</a>
-            </div>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link " href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true"
-              aria-expanded="false">
-              <i class="fas fa-ellipsis-h"></i>
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">Tất cả</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Thông báo từ nhà trường</a>
-              <a class="dropdown-item" href="#">Bài viết từ Giáo Viên</a>
-              <a class="dropdown-item" href="#">Bài viết từ Học Sinh</a>
-            </div>
-          </li>
-        </ul>
-        <div class="d-none d-lg-block">
-          <form class="form-inline">
-            <div class="input-group mb-3 mb-lg-0 ">
-              <input type="search" class="form-control form-control-sm  border-right-0" placeholder="Tìm kiếm gì đó...">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-sm btn-outline-dark border "><i class="fas fa-search"></i></button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-      <div class="collapse  w-100 pt-2 " id="navbarToggleExternalContent">
-        <div class="d-lg-none">
-          <form class="form-inline ">
-            <div class="input-group mb-3 mb-lg-0 ">
-              <input type="search" class="form-control  border-right-0" placeholder="Tìm kiếm gì đó...">
-              <div class="input-group-append">
-                <button type="submit" class="btn btn-sm btn-outline-dark border "><i class="fas fa-search"></i></button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </nav>
-  <div class="d-lg-none bg-light sticky-top  ">
-    <div class="container">
-      <div class="row border-bottom border-top text-center py-1">
-        <div class="col "><a href="#" class="text-dark"><i class="fas fa-home"></i></a></div>
-        <div class="col "><a href="#" class="text-secondary">Tin</a></div>
-        <div class="col "><a href="#" class="text-secondary">Lịch</a></div>
-        <div class="col "><a href="#" class="text-secondary">Điểm</a></div>
-        <div class="col"><a href="#" class="text-secondary">Khác</a></div>
-      </div>
-    </div>
+  <div class="bg-light shadow-sm sticky-top">
+
+  <div class="container">
+    <header class="d-flex justify-content-center py-3">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Trang chủ</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Văn bản</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Thi đua</a></li>
+        <li class="nav-item"><a href="#" class="nav-link">Khen thưởng</a></li>
+      </ul>
+    </header>
   </div>
+</div>
+
   <!-- end nav bar -->
   <!-- heading news -->
   <section class="pt-lg-0 mt-1 mt-lg-0 pt-3">

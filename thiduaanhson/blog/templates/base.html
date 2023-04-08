@@ -21,79 +21,275 @@
   <!-- Script -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
   <script src="{% static 'js/parallax.js' %}"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
   <!-- End Script -->
   <title>Ban thi đua khen thưởng huyện Anh Sơn</title>
 </head>
 <body>
 
-
-  <div class="container">
-    <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-      <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-        <img src="{% static 'imgs/LOGO_TEXT.jpeg' %}" alt="Logo thi đua - khen thưởng Anh Sơn" class="img-fluid" width="250px">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm sticky-top py-0">
+    <div class="container">
+      <a class="navbar-brand" href="#" id="headerLogo">
+        <img src="{% static 'imgs/logo.png' %}" alt="Logo thi đua - khen thưởng Anh Sơn" class="img-fluid" width="250px">
       </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto ">
+          <li class="nav-item">
+            <a class="nav-link link-danger fs-5 fw-semibold active-red" aria-current="page" href="#">TRANG CHỦ</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5 fw-semibold" href="#">VĂN BẢN</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5 fw-semibold" href="#">THI ĐUA</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link fs-5 fw-semibold" href="#">KHEN THƯỞNG</a>
+          </li>
+          <li class="nav-item d-flex align-items-center">
+            <a class="btn btn-outline-secondary rounded-pill ms-0 ms-sm-5" href="#"><i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-      <ul class="nav nav-pills">
-        <li class="nav-item"><a href="#" class="nav-link active" aria-current="page">Home</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Features</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">Pricing</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">FAQs</a></li>
-        <li class="nav-item"><a href="#" class="nav-link">About</a></li>
-      </ul>
-    </header>
+  <div id="carouselExampleAutoplaying" class="carousel slide border-bottom shadow-sm" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <img src="{% static 'imgs/banner1.png' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'imgs/banner2.png' %}" class="d-block w-100" alt="...">
+      </div>
+      <div class="carousel-item">
+        <img src="{% static 'imgs/banner3.png' %}" class="d-block w-100" alt="...">
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
   </div>
-  <!-- end top bar -->
-  </div>
-  <!-- end hidden on smaller screen than lg -->
+  
 
   <!-- end nav bar -->
   <!-- heading news -->
-  <section class="pt-lg-0 mt-1 mt-lg-0 pt-3">
-    <!-- hiển thị trên máy tính -->
-    <div class="px-3 p-lg-0  ">
-      <div class=" mb-2 mb-lg-5  py-0 py-lg-4 p-0  border-0  ">
-        <div class="container">
-          <div class="row justify-content-center align-items-center ">
-            <div class="col-md-4  mb-md-0 col-5 p-2 ">
-              <img src="{% static 'imgs/images2220278_1.jpg' %}" alt="" class="img-fluid rounded border-end-0">
-            </div>
-            <div class="col-md-4 col-7 p-1 p-lg-3">
-              <p></p>
-              <h5>Khai giảng năm học mới</h5>
-              <p class="d-none d-lg-block">Trường THCS Anh Sơn tổ chức khai giảng năm học mới 2020 - 2021 vào ngày
-                5/9/2020... </p>
-              <small class="text-muted">Đăng 29/9/2020</small>
-            </div>
+<div class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-lg-10">
+
+      <div class="p-1 p-sm-5 mb-4 bg-body-tertiary rounded-3 border shadow-sm">
+        <div class="container-fluid">
+          <div class="d-flex justify-content-between align-items-center border-bottom border-2 border-danger pb-2">
+            <h4 class="text-danger fw-bold"><i class="bi bi-newspaper me-2"></i>BÀI VIẾT NỔI BẬT</h4>
+            <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Xem tất cả<i class="bi bi-arrow-right ms-2"></i></a> 
           </div>
+    
+          <h1 class="display-5 fw-bold mt-3">Cậu bé chinh phục những đỉnh núi cao nhất Việt Nam</h1>
+          <div>
+            <span class="text-muted fst-italic"><img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="" class="rounded-circle me-2" width="30px"> 10h20 trong <a href="#">gương người tốt</a></span>
+          </div>
+          <p class="col-lg-12 fs-4 mt-3">{{ "Để chữa bệnh 'nghiện' game của con, hai năm trước anh Hoài Nam đã đưa cậu bé 6 tuổi cùng chinh phục các đỉnh núi cao Tây Bắc nhằm rèn luyện ý chí.Hiện tại Quang Anh, con trai anh, đã chinh phục được bốn trong 15 đỉnh núi cao nhất Việt Nam. Đó là những chuyến đi tạo ra sự thay đổi, không chỉ cho con mà ngay cả với tôi, ông bố 36 tuổi là kỹ sư của một tập đoàn Hàn Quốc chia sẻ."|truncatechars:300 }}</p>
+          <button class="btn btn-danger btn-lg rounded-pill" type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></button>
         </div>
       </div>
     </div>
-    <!-- end hiển thị trên máy tính -->
-  </section>
-  <!-- end heading news -->
-  <!-- latest news -->
-  <section class="mt-3 mb-4">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8">
-            <div class="pb-2 p-0 d-flex justify-content-between">
-                <h5 class=" m-0">Mới nhất</h5>
-                <a href="#">Xem tất cả <i class="fas fa-arrow-right ms-2"></i></a>
-              </div>
-          <ul class="list-group shadow-sm mt-4">
-            {% for i in '123456'%}
-            <a href="#" class="list-group-item list-group-item-action list-group-item-light d-flex justify-content-between">
-                <span
-                class="text-dark mr-3">Không thể cấm học sinh sử dụng điện thoại trong giờ học</span>
-                <small class="fst-italic">Ngày
-                29/9/2020 </small> </a>
-                {% endfor %}
+  </div>
 
+    </div>
+    <div class="container-fluid">
+    <div class="row mt-4">
+      <div class="d-flex justify-content-center align-items-center  mb-4">
+        <h4 class="text-danger fw-bold m-0"><i class="bi bi-film me-2"></i>VIDEO NỔI BẬT</h4>
+        <a href="#" class="btn btn-sm btn-outline-dark rounded-pill ms-4">Xem tất cả<i class="bi bi-arrow-right ms-2"></i></a> 
+  
+  
+      </div>
+
+{% for i in '123' %}
+    <div class="col-lg-4">
+      <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-3 shadow-sm"
+      style="background-image: url('https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); background-size: cover;">
+        <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+          <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+          <ul class="d-flex list-unstyled mt-auto">
+            <li class="me-auto">
+              <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+            </li>
+            <li class="d-flex align-items-center me-3">
+              <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+              <small>Pakistan</small>
+            </li>
+            <li class="d-flex align-items-center">
+              <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+              <small>4d</small>
+            </li>
           </ul>
         </div>
       </div>
+  </div>
+  {% endfor %}
+  </div>
+  </div>
+
+  
+<div class="py-5 my-5 text-bg-dark"  style="background-image: url({% static 'imgs/spotlight_quote.jpg' %}); background-size: cover;  min-height: 300px;">
+
+  <div id="carouselExampleAutoplaying2" class="carousel slide" data-bs-ride="carousel">
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+              <blockquote class="blockquote text-center">
+                <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
+                <p class="text-warning display-6">Thi đua là yêu nước, yêu nước thì phải thi đua, những người thi đua là những người yêu nước nhất.</p>
+                <footer class="blockquote-footer mt-3 text-white-50">
+                  <cite title="Source Title">Hồ Chí Minh, ngày 01-5-1952, tại Đại hội các chiến sĩ thi đua và cán bộ gương mẫu toàn quốc</cite>
+                </footer>
+              </blockquote>
+            </div>
+      
+
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+              <blockquote class="blockquote text-center">
+                <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
+                <p class="text-warning display-6">Tán thưởng là một điều tuyệt vời. Nó khiến những gì hay ho ở người khác cũng thuộc về chúng ta.</p>
+                <footer class="blockquote-footer mt-3 text-white-50">
+                  <cite title="Source Title">Voltaire</cite>
+                </footer>
+              </blockquote>
+            </div>
+      
+
+          </div>
+        </div>
+
+      </div>
+      <div class="carousel-item">
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-lg-8">
+
+              <blockquote class="blockquote text-center">
+                <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
+                <p class="text-warning display-6">Nghe lời chê bai mà giận là ngồi cho người gièm pha. Nghe câu khen ngợi mà mừng làm mồi cho người nịnh hót.</p>
+                <footer class="blockquote-footer mt-3 text-white-50">
+                  <cite title="Source Title">Khuyết Danh</cite>
+                </footer>
+              </blockquote>
+            </div>
+      
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
-  </section>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  </div>
+</div>
+
+
+
+
+  <div>
+
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-lg-4">
+        <div class="card card-cover h-100 overflow-hidden text-bg-dark rounded-3 shadow-sm"
+        style="background-image: url('https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); background-size: cover;">
+          <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
+            <h3 class="pt-5 mt-5 mb-4 display-6 lh-1 fw-bold">Much longer title that wraps to multiple lines</h3>
+            <ul class="d-flex list-unstyled mt-auto">
+              <li class="me-auto">
+                <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
+              </li>
+              <li class="d-flex align-items-center me-3">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#geo-fill"></use></svg>
+                <small>Pakistan</small>
+              </li>
+              <li class="d-flex align-items-center">
+                <svg class="bi me-2" width="1em" height="1em"><use xlink:href="#calendar3"></use></svg>
+                <small>4d</small>
+              </li>
+            </ul>
+          </div>
+        </div>
+    </div>
+    <div class="col-lg-8">
+      <div class="d-flex justify-content-between align-items-center  mb-4">
+      <h4 class="text-danger fw-bold"><i class="bi bi-newspaper me-2"></i>BÀI VIẾT MỚI NHẤT</h4>
+      <a href="#" class="btn btn-outline-secondary rounded-pill"><i class="bi bi-arrow-right me-2"></i>Xem tất cả</a> 
+
+      </div>
+        <div class="list-group">
+          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">List group item heading</h6>
+                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+              </div>
+              <small class="opacity-50 text-nowrap">now</small>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">Another title here</h6>
+                <p class="mb-0 opacity-75">Some placeholder content in a paragraph that goes a little longer so it wraps to a new line.</p>
+              </div>
+              <small class="opacity-50 text-nowrap">3d</small>
+            </div>
+          </a>
+          <a href="#" class="list-group-item list-group-item-action d-flex gap-3 py-3" aria-current="true">
+            <img src="https://github.com/twbs.png" alt="twbs" width="32" height="32" class="rounded-circle flex-shrink-0">
+            <div class="d-flex gap-2 w-100 justify-content-between">
+              <div>
+                <h6 class="mb-0">Third heading</h6>
+                <p class="mb-0 opacity-75">Some placeholder content in a paragraph.</p>
+              </div>
+              <small class="opacity-50 text-nowrap">1w</small>
+            </div>
+          </a>
+        </div>
+    </div>
+
+  </div>
+</div>
+  <!-- end heading news -->
+  <!-- latest news -->
+
+
+
   <!-- end latest news -->
   <!-- 4 danh mục lớn -->
   <!-- hiển thị trên máy tính -->
@@ -579,51 +775,7 @@
     </section>
   </div>
   <!-- end 4 danh mục lớn -->
-  <!-- quote -->
-  <section class="mt-0 ">
-    <div class="jumbotron border-0 rounded-0" style="height: 235px;">
-      <div class="container">
-        <div id="carouselExampleControls2" class="carousel slide " data-ride="carousel">
-          <div class="carousel-inner">
-            <div class="carousel-item active">
-              <blockquote class="blockquote text-center">
-                <i class="fas fa-quote-left mb-3"></i>
-                <p>Hiền tài là nguyên khí quốc gia.</p>
-                <footer class="blockquote-footer">
-                  <a href="https://vi.wikipedia.org/wiki/Th%C3%A2n_Nh%C3%A2n_Trung"> Thân Nhân Trung </a> trong
-                  <cite title="Source Title">Bài kí đề danh tiến sĩ khoa Nhâm Tuất niên hiệu Đại Bảo thứ ba</cite>
-                </footer>
-              </blockquote>
-            </div>
-            <div class="carousel-item">
-              <blockquote class="blockquote text-center">
-                <i class="fas fa-quote-left mb-3"></i>
-                <p>Học tập là hạt giống của kiến thức, kiến thức là hạt giống của hạnh phúc.</p>
-                <footer class="blockquote-footer">Ngạn ngữ <cite title="Source Title"> <a
-                      href="https://vi.wikipedia.org/wiki/Gruzia">Gruzia</a> </cite></footer>
-              </blockquote>
-            </div>
-            <div class="carousel-item">
-              <blockquote class="blockquote text-center">
-                <i class="fas fa-quote-left mb-3"></i>
-                <p>Giáo dục là vũ khí mạnh nhất mà người ta có thể sử dụng để thay đổi cả thế giới.</p>
-                <footer class="blockquote-footer"><a href="https://vi.wikipedia.org/wiki/Nelson_Mandela">Nelson
-                    Mandela</a>, người đoạt <cite title="Source Title">Giải Noel Hòa Bình 1993</cite></footer>
-              </blockquote>
-            </div>
-          </div>
-          <a class="carousel-control-prev" href="#carouselExampleControls2" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-          </a>
-          <a class="carousel-control-next" href="#carouselExampleControls2" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section><!-- end quote -->
+
   <!-- thầy trò viết -->
   <section>
     <div class="  container py-0 py-lg-5 ">
@@ -1000,5 +1152,21 @@
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ENjdO4Dr2bkBIFxQpeoTz1HIcje39Wm4jDKdf19U8gI4ddQ3GYNS7NTKfAdVQSZe" crossorigin="anonymous"></script>
+
+
+    <script>
+      // When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
+      window.onscroll = function() {scrollFunction()};
+      
+      function scrollFunction() {
+        if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+          document.getElementById("headerLogo").style.width = "150px";
+        } else {
+          document.getElementById("headerLogo").style.width = "250px";
+
+        }
+      }
+      </script>
+      
 </body>
 </html>

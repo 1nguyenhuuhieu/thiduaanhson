@@ -4,10 +4,15 @@ from .models import *
 # Create your views here.
 
 def index(request):
-    return render(request, 'index.html', context={})
+    videos = Video.objects.all()
+    context = {
+        'videos': videos
+    }
+    return render(request, 'index.html', context)
 
 def post(request):
-    post = Post.objects.get(pk=2)
+    post = Post.objects.get(pk=1)
+
 
     context = {
         'post': post

@@ -60,14 +60,15 @@
       </div>
       </div>
       <div class="row mb-5">
-{% for i in '123' %}
+        {% if videos %}
+{% for video in videos %}
     <div class="col-lg-4">
       <div class="card card-cover h-100 overflow-hidden  shadow-sm border"
-      style="background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),url('https://images.unsplash.com/photo-1575936123452-b67c3203c357?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80'); background-size: cover; " >
+      style="background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),url('{{ video.cover.url }}'); background-size: cover; " >
         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
-          <h1 class="display-1 p-0 m-0"><i class="bi bi-play-btn"></i></h1>
+          <h1 class="display-4 p-0 m-0"><i class="bi bi-play-btn"></i></h1>
 
-          <h3 class="mb-4 display-6 lh-1 fw-bold"><a href="#" class="stretched-link text-decoration-none link-light">Much longer title that wraps to multiple lines</a> </h3>
+          <h3 class="mb-4 display-6 lh-1 fw-bold"><a href="#" class="stretched-link text-decoration-none link-light">{{ video.title }}</a> </h3>
           <ul class="d-flex list-unstyled mt-auto">
             <li class="me-auto">
               <img src="https://github.com/twbs.png" alt="Bootstrap" width="32" height="32" class="rounded-circle border border-white">
@@ -85,6 +86,7 @@
       </div>
   </div>
   {% endfor %}
+  {% endif %}
   </div>
   </div>
 

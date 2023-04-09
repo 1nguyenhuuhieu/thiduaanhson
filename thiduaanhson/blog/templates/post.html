@@ -33,9 +33,9 @@
                   <li class="breadcrumb-item active" aria-current="page">Data</li>
                 </ol>
               </nav>
-              <h1>Đổ xô xây nhà chờ đền bù từ dự án thủy lợi</h1>
+              <h1>{{ post.title }}</h1>
               <div>
-                <span class="text-muted fst-italic"><img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="" class="rounded-circle me-2" width="30px"> 10h20 trong <a href="#">gương người tốt</a></span>
+                <span class="text-muted fst-italic"><img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="" class="rounded-circle me-2" width="30px"> 10h20. {% for tag in post.tags.all %}<a href="#"> {{tag.title}}</a> {% endfor %}</span>
               </div>
               <div class="fs-5 my-4">
                 <div id="post">
@@ -73,10 +73,11 @@
 
 <script>
   window.onload = function() {
-    const imgs = document.querySelectorAll("img");
+    const postDiv = document.getElementById(post)
+    const imgs = post.querySelectorAll("img");
     for (let i = 0; i < imgs.length; i++) {
       imgs[i].style = '';
-      imgs[i].className = 'img-fluid rounded-3 shadow-sm';
+      imgs[i].className = 'img-fluid rounded-3 shadow-sm border';
 
       
     }

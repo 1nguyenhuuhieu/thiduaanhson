@@ -1,86 +1,76 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-<div class="py-5"  class="parallax-window py-5" data-parallax="scroll" data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
-<div class="row justify-content-center">
-  <div class="col-lg-6 text-center">
-    <h1 class="display-4 fw-semibold text-warning" style="font-family: 'Oswald', sans-serif;">VĂN BẢN - ĐIỀU HÀNH</h1>
+<div class="py-5" class="parallax-window py-5" data-parallax="scroll"
+  data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
+  <div class="row justify-content-center">
+    <div class="col-lg-6 text-center">
+      <h1 class="display-4 fw-semibold text-light" style="font-family: 'Oswald', sans-serif;">VĂN BẢN - ĐIỀU HÀNH</h1>
+    </div>
   </div>
-
 </div>
-</div>
-
-
-
-
 <div class="container">
-    <div class="row mt-4 justify-content-center">
-        <div class="col-lg-1 text-center ">
-           <div class="d-flex flex-column mt-5 fs-4 text-muted align-items-center mt-5" style="position: sticky;
-           top: 80px;">
-            <i class="bi bi-facebook"></i>
-            <i class="bi bi-envelope mt-2"></i>
-            <i class="bi bi-link mt-2"></i>
-            <hr class="w-25">
+  <div class="row mt-4">
+    <div class="col-lg-12">
+      <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="#">Home</a></li>
+          <li class="breadcrumb-item"><a href="#">Library</a></li>
+          <li class="breadcrumb-item active" aria-current="page">Data</li>
+        </ol>
+      </nav>
 
-            <i class="bi bi-chat-left"></i>
-            <small class="fs-6">0</small>    
+    </div>
+  </div>
+  <div class="row mt-3 justify-content-center">
+    <div class="col-lg-7 ">
 
-            <i class="bi bi-heart mt-2"></i>
-            <small class="fs-6">15</small>    
-
-            <i class="bi bi-eye mt-2 mb-0"></i>
-            <small class="fs-6">45</small>    
-            <hr class="w-25">
-            <i class="bi bi-arrow-left"></i>
-
-                
-           </div>
-        </div>
-
-        <div class="col-lg-7 ">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
-                  <li class="breadcrumb-item"><a href="#">Library</a></li>
-                  <li class="breadcrumb-item active" aria-current="page">Data</li>
-                </ol>
-              </nav>
-              <h1>Đổ xô xây nhà chờ đền bù từ dự án thủy lợi</h1>
-              <div>
-                <span class="text-muted fst-italic"><img src="https://img.freepik.com/free-vector/businessman-character-avatar-isolated_24877-60111.jpg?w=2000" alt="" class="rounded-circle me-2" width="30px"> 10h20 trong <a href="#">gương người tốt</a></span>
-              </div>
-              <div class="fs-5 my-4">
-                <div class="ratio ratio-16x9">
-                  <iframe  src="https://www.youtube.com/embed/a4NjVw4G2tM?list=RDa4NjVw4G2tM" title="Không còn mùa thu   Trần Thu Hà" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-
-                </div>
-           
-        </div>
-
-        </div>
-
-        <div class="col-lg-4">
-            <div>
-              <div class="p-4 mb-3 bg-body-tertiary rounded border">
-                <h4 class="fst-italic">About</h4>
-                <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers, content, or something else entirely. Totally up to you.</p>
-              </div>
-      
-                <h4 class="fst-italic mb-4 mt-5">Bài viết liên quan</h4>
-                    {% for i in '12345' %}
-
-                    <div class="row g-2 border-bottom my-2 pb-2">
-                        <div class="col-3">
-                            <img src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80" alt="" class="img-fluid rounded shadow-sm border">
-                        </div>
-                        <div class="col-9"><h6>Tên bài viết</h6>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto i...</p></div>
-                    </div>
-                    {% endfor %}
-    
+      {% for i in '1234567890'%}
+      <div class="card mb-3" >
+        <div class="row g-0">
+          <div class="col-md-4">
+            <img src="https://preview.colorlib.com/theme/magazine/img/l1.jpg.webp" class="img-fluid rounded-start" alt="...">
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <h5 class="card-title">Card title</h5>
+              <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p class="card-text"><small class="text-body-secondary">Last updated 3 mins ago</small></p>
             </div>
           </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
     </div>
+
+    <div class="col-lg-4">
+      <div>
+        <div class="p-4 mb-3 bg-body-tertiary rounded border">
+          <h4 class="fst-italic">About</h4>
+          <p class="mb-0">Customize this section to tell your visitors a little bit about your publication, writers,
+            content, or something else entirely. Totally up to you.</p>
+        </div>
+
+        <h4 class="mb-4 mt-5 border-bottom border-danger border-2 pb-2">Xem nhiều</h4>
+        {% for i in '12345' %}
+
+        <div class="row g-2 border-bottom my-2 pb-2">
+          <div class="col-3">
+            <img
+              src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
+              alt="" class="img-fluid rounded shadow-sm border">
+          </div>
+          <div class="col-9">
+            <h6>Tên bài viết</h6>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto i...</p>
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </div>
 </div>
 {% endblock %}

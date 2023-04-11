@@ -2,7 +2,7 @@
 {% load static %}
 {% load humanize %}
 {% block content %}
-<div id="carouselExampleAutoplaying" class="carousel slide border-bottom shadow-sm" data-bs-ride="carousel">
+<div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="{% static 'imgs/banner1.png' %}" class="d-block w-100" alt="...">
@@ -32,21 +32,24 @@
   <div class="row justify-content-center mt-4 mt-sm-5">
     <div class="col-lg-10">
 
-      <div class="px-1 px-sm-5 py-3 py-sm-5 mb-4 bg-body-tertiary rounded-3 border shadow-sm">
+      <div class="px-1 px-sm-5 py-3 py-sm-5 mb-4 bg-body-tertiary rounded-5 border shadow-sm">
         <div class="container-fluid">
           <div class="d-flex justify-content-between align-items-center border-bottom border-3 border-danger pb-3">
-            <h4 class="text-danger fw-bold"><i class="bi bi-newspaper me-2"></i>BÀI VIẾT NỔI BẬT</h4>
+            <h4 class="text-danger fw-bold"><i class="bi bi-star-fill me-2"></i>BÀI VIẾT NỔI BẬT</h4>
             <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Xem tất cả<i class="bi bi-arrow-right ms-2"></i></a> 
           </div>
     
           <h1 class="display-6 fw-bold mt-3">{{ highlight_post.title }}</h1>
           <div>
             
-            <span class="fw-semibold"><i class="bi bi-person-circle me-1"></i>{{ highlight_post.author.name }}</span><span class="text-muted mx-2"><i class="bi bi-calendar me-1"></i>{{ highlight_post.created_time|naturaltime }}</span> {% if highlight_post.tags  %}{% for tag in highlight_post.tags.all  %} <a href="#"><span class="badge rounded-pill text-bg-warning">{{ tag.title }}</span></a>
+            <span class="fw-semibold"><i class="bi bi-person-circle me-1"></i>{{ highlight_post.author.name }}</span>
+            <span class="text-muted mx-2"><i class="bi bi-calendar me-1"></i>{{ highlight_post.created_time|naturaltime }}</span>
+            
+            {% if highlight_post.tags  %}{% for tag in highlight_post.tags.all  %} <a href="#"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-folder me-1"></i>{{ tag.title }}</span></a>
               {% endfor %} {% endif %}
           </div>
           <div class="col-lg-12 fs-4 mt-3">{{ plaintext_post|safe|truncatechars:500 }}</div>
-          <a href="{% url 'post' %}" class="btn btn-danger btn-lg rounded-pill mt-4" type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></a>
+          <a href="{% url 'post' post_id=highlight_post.id %}" class="btn btn-danger btn-lg rounded-pill mt-4" type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></a>
         </div>
       </div>
     </div>
@@ -68,7 +71,7 @@
 {% for video in videos %}
     <div class="col-lg-4">
       <div class="card card-cover h-100 overflow-hidden  shadow-sm border"
-      style="background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),url('{{ video.cover.url }}'); background-size: cover; " >
+      style="background-image: linear-gradient(rgba(0, 0, 0, 0.60), rgba(0, 0, 0, 0.60)),url('https://img.youtube.com/vi/CCeJFpNDRk8/maxresdefault.jpg'); background-size: cover; " >
         <div class="d-flex flex-column h-100 p-5 pb-3 text-white text-shadow-1">
           <h1 class="display-4 p-0 m-0"><i class="bi bi-play-btn"></i></h1>
 

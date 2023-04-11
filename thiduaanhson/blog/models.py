@@ -64,7 +64,6 @@ class Video(models.Model):
     title = models.CharField(max_length=200)
     cover = models.ImageField(upload_to='cover-video/', blank=True, null=True)
     author = models.ForeignKey(Author, blank=True, null=True, on_delete=models.CASCADE)
-    youtube_link = models.URLField(blank=True, null=True)
-    video = models.FileField(blank=True, null=True, upload_to='videos/')
+    youtube_id = models.URLField(blank=True, null=True, verbose_name='id video youtube')
     created_time = models.DateTimeField(auto_now_add=True, null=True)
 

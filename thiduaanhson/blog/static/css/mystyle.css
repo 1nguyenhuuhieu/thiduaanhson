@@ -186,3 +186,17 @@ box-shadow: 4px 4px 8px 1px rgba(57,57,57,0.48);
   border-radius: 10px;
 }
 
+.hovereffect {
+  overflow: hidden;
+}
+.hover01  img {
+	-webkit-transform: scale(1);
+	transform: scale(1);
+	-webkit-transition: .3s ease-in-out;
+	transition: .3s ease-in-out;
+}
+.hover01 :hover img {
+	-webkit-transform: scale(1.3);
+	transform: scale(1.3);
+  
+}

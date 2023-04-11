@@ -14,7 +14,7 @@ def index(request):
 
     # get latest highlight post
     try:
-        highlight_post = Post.objects.latest('-is_highlight', '-updated_time')
+        highlight_post = Post.objects.latest('is_highlight', 'updated_time')
         plaintext_post = cleanhtml(highlight_post.content)
     except:
         highlight_post = None
@@ -28,8 +28,8 @@ def index(request):
     }
     return render(request, 'index.html', context)
 
-def post(request):
-    post = Post.objects.get(pk=1)
+def post(request, post_id):
+    post = Post.objects.get(pk=post_id)
 
     context = {
         'post': post

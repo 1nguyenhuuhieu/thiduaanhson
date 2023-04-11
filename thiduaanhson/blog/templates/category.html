@@ -1,41 +1,50 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
+<div class="shadow-sm border-bottom border-5 border-warning">
 <div class="py-5" class="parallax-window py-5" data-parallax="scroll"
   data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
 
       <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">VĂN BẢN - ĐIỀU HÀNH</h1>
 
 </div>
+</div>
+
 <div class="container">
-  <div class="row mt-4">
-    <div class="col-lg-12">
+  <div class="row mt-4 justify-content-center">
+    <div class="col-lg-10">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="#">Home</a></li>
-          <li class="breadcrumb-item"><a href="#">Library</a></li>
-          <li class="breadcrumb-item active" aria-current="page">Data</li>
+          <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-decoration-none"><i class="bi bi-house-door me-1"></i>Trang chủ</a></li>
+          <li class="breadcrumb-item active">Văn bản</li>
         </ol>
       </nav>
+      <hr>
 
     </div>
   </div>
-  <div class="row mt-3 justify-content-center">
-    <div class="col-lg-7 ">
+  <div class="row mt-2 justify-content-center">
+    <div class="col-lg-6 ">
 
       {% for post in list_object %}
+          <div class="card border-0 hover01">
         <div class="row mb-4">
-          <h4 class="mb-3">{{post}}</h4>
+
+          <h5 class="mb-3"> <a href="{% url 'post' post_id=post.id %}" class="text-decoration-none link-dark stretched-link">{{post.title}}</a></h5>
           <div class="col-3">
-            <img src="https://preview.colorlib.com/theme/magazine/img/l1.jpg.webp" class="img-fluid rounded" alt="...">
+            <div class="hovereffect rounded shadow-sm border">
+              <img src="https://preview.colorlib.com/theme/magazine/img/l1.jpg.webp" class="img-fluid " alt="...">
+            </div>
           </div>
           <div class="col-9">
-              <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              <p>{{ post.content|striptags|safe|truncatewords:30 }}</p>
               <p><small class="text-body-secondary">Last updated 3 mins ago</small></p>
           </div>
-
+        </div>
           <div class="col-12">
+            {% if not forloop.last %}
             <hr class="m-0 mt-4">
+            {% endif %}
           </div>
 
       </div>

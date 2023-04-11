@@ -7,9 +7,8 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Tag(models.Model):
-    short_name = models.CharField(max_length=20, verbose_name='tên hiển thị ở menu')
     title = models.CharField(max_length=1000, verbose_name='tên đầy đủ')
-    is_menu = models.BooleanField(verbose_name='hiển thị trên menu', default=False)
+    description = models.CharField(max_length=1000, verbose_name='mô tả', null=True)
     cover = models.ImageField(upload_to='cover-category/',verbose_name='ảnh bìa', blank=True, null=True)
     parrent_tag = models.ForeignKey('self', verbose_name='danh mục cha', blank=True, on_delete=models.CASCADE)
 

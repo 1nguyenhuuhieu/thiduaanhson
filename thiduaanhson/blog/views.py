@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from .models import *
+from django.core.paginator import Paginator
 import re
 # as per recommendation from @freylis, compile once only
 CLEANR = re.compile('<.*?>') 
@@ -30,7 +31,6 @@ def index(request):
 def post(request):
     post = Post.objects.get(pk=1)
 
-
     context = {
         'post': post
     }
@@ -40,5 +40,20 @@ def post(request):
 def video(request):
     return render(request, 'video.html', context={})
 
-def category(request):
-    return render(request, 'category.html', context={})
+def category(request, category_id=None, page=1 ):
+    if category_id:
+        posts = Post.objects.filter(category=category_id).order_by('-created_time')
+    else:
+        posts = Post.objects.all().order_by('-created_time')
+
+    objects = posts
+    p = Paginator(objects, 2)
+    current_page = p.page(page)
+    list_object = p.page(page).object_list
+    context = {
+        'p': p,
+        'list_object': list_object,
+        'current_page': current_page,
+        'category_id': category_id
+    }
+    return render(request, 'category.html', context)

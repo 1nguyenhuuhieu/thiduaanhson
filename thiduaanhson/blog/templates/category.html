@@ -3,11 +3,9 @@
 {% block content %}
 <div class="py-5" class="parallax-window py-5" data-parallax="scroll"
   data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
-  <div class="row justify-content-center">
-    <div class="col-lg-6 text-center">
-      <h1 class="display-4 fw-semibold text-light" style="font-family: 'Oswald', sans-serif;">VĂN BẢN - ĐIỀU HÀNH</h1>
-    </div>
-  </div>
+
+      <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">VĂN BẢN - ĐIỀU HÀNH</h1>
+
 </div>
 <div class="container">
   <div class="row mt-4">
@@ -25,9 +23,9 @@
   <div class="row mt-3 justify-content-center">
     <div class="col-lg-7 ">
 
-      {% for i in '1234567890'%}
+      {% for post in list_object %}
         <div class="row mb-4">
-          <h5>ing text below as a natural lead-in to addi</h5>
+          <h4 class="mb-3">{{post}}</h4>
           <div class="col-3">
             <img src="https://preview.colorlib.com/theme/magazine/img/l1.jpg.webp" class="img-fluid rounded" alt="...">
           </div>
@@ -42,6 +40,21 @@
 
       </div>
       {% endfor %}
+      {% if p.page_range %}
+      <nav aria-label="Page navigation example">
+        <ul class="pagination">
+          <li class="page-item {% if not current_page.has_previous %} disabled {% endif %}"><a class="page-link" href="#">Trước</a></li>
+          {% for number_page in p.page_range %}
+          <li class="page-item"><a class="page-link {% if current_page.number == number_page %}active{% endif %}" href="{% url 'category' category_id=0 page=number_page %}">{{number_page}}</a></li>
+          {% endfor %}
+          <li class="page-item {% if not current_page.has_next %} disabled {% endif %}"><a class="page-link" href="#">Sau</a></li>
+
+        </ul>
+   
+      </nav>
+      <p class="text-muted small fst-italic">Trang {{current_page.number}} trong {{p.num_pages}}. Tổng số {{ p.count }} bài viết</p>
+
+      {% endif %}
 
 
     </div>

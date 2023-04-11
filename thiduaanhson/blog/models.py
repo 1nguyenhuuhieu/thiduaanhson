@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 class Tag(models.Model):
     title = models.CharField(max_length=1000, verbose_name='danh mục')
+    cover = models.ImageField(upload_to='cover-category/', blank=True, null=True)
     class Meta:
         verbose_name = 'danh mục'
         verbose_name_plural = 'danh mục'

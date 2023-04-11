@@ -5,13 +5,17 @@ import PIL.Image
 from django.contrib.auth.models import User
 
 # Create your models here.
+
 class Tag(models.Model):
-    title = models.CharField(max_length=1000, verbose_name='danh mục')
-    cover = models.ImageField(upload_to='cover-category/', blank=True, null=True)
+    short_name = models.CharField(max_length=20, verbose_name='tên hiển thị ở menu')
+    title = models.CharField(max_length=1000, verbose_name='tên đầy đủ')
+    is_menu = models.BooleanField(verbose_name='hiển thị trên menu', default=False)
+    cover = models.ImageField(upload_to='cover-category/',verbose_name='ảnh bìa', blank=True, null=True)
+    parrent_tag = models.ForeignKey('self', verbose_name='danh mục cha', blank=True, on_delete=models.CASCADE)
+
     class Meta:
         verbose_name = 'danh mục'
         verbose_name_plural = 'danh mục'
-
 
     def __str__(self):
         return f'{self.title}'

@@ -7,10 +7,12 @@ def index(request):
     slides = Slide.objects.filter(is_show=True)[:3]
     highlight_post = Post.objects.latest('-is_highlight')
     videos = Video.objects.all().order_by('created_time')[:3]
+    latest_posts = Post.objects.all().order_by('-created_time')[:5]
     context = {
         'videos': videos,
         'slides': slides,
-        'highlight_post': highlight_post
+        'highlight_post': highlight_post,
+        'latest_posts': latest_posts
     }
     return render(request, 'index.html', context)
 

@@ -109,5 +109,5 @@ class Video(models.Model):
     youtube_id = models.CharField(max_length=20,blank=True, null=True, verbose_name='id video youtube')
     created_time = models.DateTimeField(auto_now_add=True, null=True)
     tags = models.ManyToManyField(Tag, verbose_name='danh mục')
-
-
+    def __str__(self):
+        return f'{self.title}'

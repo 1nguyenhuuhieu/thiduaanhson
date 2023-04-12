@@ -1,0 +1,155 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<style>
+    .container-video {
+  position: relative;
+}
+    .image {
+    display: block;
+    width: 100%;
+    height: 100%;
+    }
+    .overlay {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      width: 100%;
+      opacity: 0;
+      transition: .5s ease;
+      background-color: #CA1015;
+    }
+    .container-video:hover .overlay {
+      opacity: 1;
+    }
+    .text {
+      color: rgb(255, 255, 255);
+      font-size: 20px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    </style>
+<div class="shadow-sm border-bottom border-5 border-warning">
+    <div class="py-5" class="parallax-window py-5" data-parallax="scroll"
+        data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
+        <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">VIDEO THI
+            ĐUA</h1>
+    </div>
+</div>
+<div class="container">
+    <div class="row mt-4 justify-content-center">
+        <div class="col-lg-12">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'index' %}" class="text-decoration-none"><i
+                                class="bi bi-house-door me-1"></i>Trang chủ</a></li>
+                    <li class="breadcrumb-item active">Video</li>
+                </ol>
+            </nav>
+            <hr>
+        </div>
+    </div>
+    <div class="row mt-2 justify-content-center">
+        <div class="col-lg-9">
+            <div class="row">
+                {% for video in videos %}
+                <div class="col-lg-4">
+                    <div class="container-video h-100">
+                    <div class="image card card-cover overflow-hidden shadow-sm border"
+                        style="background-image: linear-gradient(rgba(0, 0, 0, 0.50), rgba(0, 0, 0, 0.50)),url('https://img.youtube.com/vi/{{ video.youtube_id }}/hqdefault.jpg'); background-size: cover; ">
+                        <div class="d-flex flex-column h-100 p-3 text-white text-shadow-1">
+                            <h5 class="mb-4"><a href="{% url 'video' video_id=video.id %}"
+                                    class="stretched-link text-decoration-none link-light">{{ video.title }}</a> </h5>
+                            <div class="d-flex mt-auto ">
+                                <div class="me-3">
+                                    <img src="
+                                            {% if video.author.avatar %}
+                                            {{ video.author.avatar.url }}
+                                            {% else %}
+                                            {% static 'imgs/logo-circle.png' %}
+                                            {% endif %}
+                                            " alt="avatar" width="32" height="32" class="rounded-circle border border-white">
+                                </div>
+                                <div class="d-flex flex-column">
+                                    <div><small>{{ video.author.name }}</small></div>
+                                    <div><small class="fst-italic">{{ video.created_time|naturaltime }}</small></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="overlay">
+                        <div class="text"><i class="bi bi-play-circle me-2"></i>{{ video.title }}</div>
+                      </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% if p.page_range %}
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item {% if not current_page.has_previous %} disabled {% endif %}"><a
+                            class="page-link" href="#">Trước</a></li>
+                    {% for number_page in p.page_range %}
+                    <li class="page-item"><a
+                            class="page-link {% if current_page.number == number_page %}active{% endif %}"
+                            href="{% url 'category' category_id=0 page=number_page %}">{{number_page}}</a></li>
+                    {% endfor %}
+                    <li class="page-item {% if not current_page.has_next %} disabled {% endif %}"><a class="page-link"
+                            href="#">Sau</a></li>
+                </ul>
+            </nav>
+            <p class="text-muted small fst-italic">Trang {{current_page.number}} trong {{p.num_pages}}. Tổng số {{
+                p.count }} bài viết</p>
+            {% endif %}
+        </div>
+        <div class="col-lg-3">
+            <div>
+                <label for="exampleDataList" class="form-label fw-semibold"><i class="bi bi-search me-2"></i>Tìm kiếm video</label>
+                <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Tên video...">
+                <datalist id="datalistOptions">
+                <option value="San Francisco">
+                <option value="New York">
+                <option value="Seattle">
+                <option value="Los Angeles">
+                <option value="Chicago">
+                </datalist>
+            </div>
+   
+   
+                <h4 class="mt-4 mb-4 border-bottom border-danger border-2 pb-2">Top 10 video</h4>
+                {% for i in '12345' %}
+                <div class="row g-2 border-bottom my-2 pb-2">
+                    <div class="col-12">
+                        <h6>Tên chuyên mục</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto i...</p>
+                    </div>
+                </div>
+                {% endfor %}
+
+                <h4 class="mb-4 mt-5 border-bottom border-danger border-2 pb-2">Xem nhiều</h4>
+                {% for i in '123' %}
+                <div class="row g-2 border-bottom my-2 pb-2">
+                    <div class="col-3">
+                        <img src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
+                            alt="" class="img-fluid rounded shadow-sm border">
+                    </div>
+                    <div class="col-9">
+                        <h6>Tên bài viết</h6>
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto i...</p>
+                    </div>
+                </div>
+                {% endfor %}
+        
+        </div>
+    </div>
+</div>
+{% endblock %}

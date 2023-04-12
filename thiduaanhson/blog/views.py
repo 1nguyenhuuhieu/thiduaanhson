@@ -1,30 +1,13 @@
 from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator
-import re
-# as per recommendation from @freylis, compile once only
-CLEANR = re.compile('<.*?>') 
-
-# Create your views here.
-def cleanhtml(raw_html):
-  cleantext = re.sub(CLEANR, '', raw_html)
-  return cleantext
+from django.shortcuts import get_object_or_404
 
 def index(request):
-
-    # get latest highlight post
-    try:
-        highlight_post = Post.objects.latest('is_highlight', 'updated_time')
-        plaintext_post = cleanhtml(highlight_post.content)
-    except:
-        highlight_post = None
-        plaintext_post = None
-    slides = Slide.objects.filter(is_show=True)
-    videos = Video.objects.all()
+    slides = Slide.objects.filter(is_show=True)[:3]
+    videos = Video.objects.all().order_by('created_time')[:3]
     context = {
-        'highlight_post': highlight_post,
         'videos': videos,
-        'plaintext_post': plaintext_post,
         'slides': slides
     }
     return render(request, 'index.html', context)
@@ -38,8 +21,20 @@ def post(request, post_id):
     
     return render(request, 'post.html', context)
 
-def video(request):
-    return render(request, 'video.html', context={})
+def video(request, video_id):
+    video = get_object_or_404(Video, pk=video_id)
+    context = {
+        'video': video
+    }
+    return render(request, 'video.html', context)
+
+def videos(request):
+    videos = Video.objects.all()
+    context = {
+        'videos': videos
+    }
+    return render(request, 'videos.html', context)
+
 
 def category(request, category_id=None, page=1 ):
     if category_id:

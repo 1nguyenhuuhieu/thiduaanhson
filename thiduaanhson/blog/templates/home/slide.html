@@ -4,11 +4,9 @@
     <div class="carousel-inner">
         {% for slide in slides %}
       <div class="carousel-item active">
-        {% if slide.post %}
-        <a href="{% url 'post' post_id=slide.post.id %}"></a>
-        {% else %}
-        <a href="#">
-        {% endif %}
+        <a href="{% if slide.post %}
+        {% url 'post' post_id=slide.post.id %}
+        {% else %}#{% endif %}">
         <img src="{{ slide.cover.url }}" class="d-block w-100" alt="{{ slide.title }}">
         </a>
       </div>

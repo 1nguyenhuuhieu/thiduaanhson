@@ -19,12 +19,13 @@ def index(request):
     except:
         highlight_post = None
         plaintext_post = None
-
+    slides = Slide.objects.filter(is_show=True)
     videos = Video.objects.all()
     context = {
         'highlight_post': highlight_post,
         'videos': videos,
-        'plaintext_post': plaintext_post
+        'plaintext_post': plaintext_post,
+        'slides': slides
     }
     return render(request, 'index.html', context)
 

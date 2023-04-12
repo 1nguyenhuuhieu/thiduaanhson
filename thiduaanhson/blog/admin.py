@@ -5,7 +5,7 @@ from .models import *
 @admin.register(Slide)
 class SlideAdmin(admin.ModelAdmin):
     list_display = ('title', 'is_show')
-    fields = ('title', 'cover', 'is_show','image_tag','post', )
+    fields = ('title', 'cover','image_tag', 'is_show','post', )
     readonly_fields = ('image_tag',)
 
 admin.site.register(Post)

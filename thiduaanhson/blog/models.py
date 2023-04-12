@@ -13,6 +13,7 @@ class Slide(models.Model):
     cover = models.ImageField(upload_to='slides/',verbose_name='ảnh slide', help_text='ảnh slide nên có tỉ lệ cao:rộng là 1:4 để đẹp nhất ')
     is_show = models.BooleanField(verbose_name='hiển thị trang chủ', default=True)
     post = models.ForeignKey('Post', blank=True, null=True, verbose_name='bài viết liên kết', on_delete=models.CASCADE)
+    created_time = models.TimeField(auto_now_add=True, blank=True, null=True)
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.title = f'banner-{self.id}'
@@ -26,7 +27,7 @@ class Slide(models.Model):
             img.close()
             self.cover.close()
     def image_tag(self):
-        return mark_safe('<img src="%s" height=30' % (self.cover.url))
+        return mark_safe('<img src="%s" height=100' % (self.cover.url))
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
 

@@ -5,10 +5,12 @@ from django.shortcuts import get_object_or_404
 
 def index(request):
     slides = Slide.objects.filter(is_show=True)[:3]
+    highlight_post = Post.objects.latest('-is_highlight')
     videos = Video.objects.all().order_by('created_time')[:3]
     context = {
         'videos': videos,
-        'slides': slides
+        'slides': slides,
+        'highlight_post': highlight_post
     }
     return render(request, 'index.html', context)
 

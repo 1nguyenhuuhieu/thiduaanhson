@@ -27,7 +27,7 @@
             {% if highlight_post.tags  %}{% for tag in highlight_post.tags.all  %} <a href="#"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-folder me-1"></i>{{ tag.title }}</span></a>
               {% endfor %} {% endif %}
           </div>
-          <div class="col-lg-12 fs-4 mt-3">{{ plaintext_post|safe|truncatechars:500 }}</div>
+          <div class="col-lg-12 fs-4 mt-3">{{highlight_post.content|striptags|safe|truncatewords:50 }}</div>
           <a href="{% url 'post' post_id=highlight_post.id %}" class="btn btn-danger btn-lg rounded-pill mt-4" type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></a>
         </div>
       </div>

@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load humanize %}
+{% load static %}
 {% block content %}
 <div class="container">
   <div class="row mt-4 justify-content-center pb-5">
@@ -7,25 +8,34 @@
       {% include 'include/left_info.html' %}
     </div>
     <div class="col-lg-7 ">
+      <img src="{{post.cover}}" alt="" class="img-fluid">
       <h1>{{ post.title }}</h1>
         {% include 'include/post_info.html' %}
-      <div>
-      </div>
-      <div class="fs-5 my-4">
-        <div id="post">
+
+      <div class="fs-5 border-top pt-2 mt-3 mb-5">
+
+        <div class="d-flex justify-content-end"> 
+          <span class="text-muted fst-italic small">
+            <i class="bi bi-hourglass-top me-2"></i>Thời gian đọc: <span id="time"></span> phút
+          </span>
+        </div>
+
+        <article id="article">
           {% autoescape off %}
           {{ post.content }}
           {% endautoescape %}
-        </div>
+      </article>
+
       </div>
     </div>
-    <div class="col-lg-4">
-      <div>
+    <div class="col-lg-4" >
+      <div  style="position: sticky;
+      top: 100px;">
         {% with author=post.author %}
         {% include 'include/author.html' %}
         {% endwith %}
-        <h4 class="pb-2 mb-4 mt-5 border-bottom border-2 border-danger fst-italic">Bài viết liên quan</h4>
-        {% for i in '12345' %}
+        <h4 class="pb-2 mb-4 mt-4 border-bottom border-2 border-danger">Cùng chuyên mục</h4>
+        {% for i in '123' %}
         <div class="row g-2 border-bottom my-2 pb-2">
           <div class="col-3">
             <img
@@ -44,12 +54,22 @@
 </div>
 <script>
   window.onload = function () {
-    const postDiv = document.getElementById(post)
-    const imgs = post.querySelectorAll("img");
+    const postDiv = document.getElementById('article')
+    const imgs = postDiv.querySelectorAll("img");
     for (let i = 0; i < imgs.length; i++) {
       imgs[i].style = '';
-      imgs[i].className = 'img-fluid rounded-3 shadow-sm border';
+      imgs[i].className = 'img-fluid rounded-3 shadow-sm  my-2';
     }
   };
+  function readingTime() {
+  const text = document.getElementById("article").innerText;
+  const wpm = 225;
+  const words = text.trim().split(/\s+/).length;
+  const time = Math.ceil(words / wpm);
+  document.getElementById("time").innerText = time;
+}
+readingTime();
+
+
 </script>
 {% endblock %}

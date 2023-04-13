@@ -18,6 +18,11 @@ def index(request):
 
 def post(request, post_id):
     post = Post.objects.get(pk=post_id)
+    try:
+        post.view_count += 1
+        post.save()
+    except:
+        pass
 
     context = {
         'post': post

@@ -11,6 +11,8 @@ class SlideAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     filter_horizontal = ('tags',)
+    readonly_fields = ('view_count',)
+
 
 
 admin.site.register(Author)

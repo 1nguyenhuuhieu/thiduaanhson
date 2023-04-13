@@ -60,10 +60,12 @@ class Post(models.Model):
     is_highlight = models.BooleanField(verbose_name='có phải bài viết nổi bật', default=False)
     title = models.CharField(max_length=1000, verbose_name='tên bài viết')
     content = RichTextUploadingField(verbose_name='nội dung')
-    thumbnail = models.ImageField(upload_to='thumbnails/', verbose_name='ảnh bìa', blank=True)
+    cover = models.ImageField(upload_to='post-covers/', verbose_name='ảnh bìa', blank=True, null=True)
+    thumbnail = models.ImageField(upload_to='thumbnails/', verbose_name='ảnh thumbnail', blank=True, null=True)
     tags = models.ManyToManyField(Tag, verbose_name='danh mục', blank=True)
     created_time = models.DateTimeField(auto_now_add=True,null=True)
     updated_time = models.DateTimeField(auto_now=True,null=True)
+    view_count = models.IntegerField(blank=True, null=True, default=0, verbose_name='số lượt xem')
     
     class Meta:
         verbose_name = 'bài viết'
@@ -71,16 +73,18 @@ class Post(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        if self.thumbnail:
-            img = PIL.Image.open(self.thumbnail)
+        if self.cover:
+            img = PIL.Image.open(self.cover)
             width, height = img.size
-            target_width = 500
-            h_coefficient = width/500
+            target_width = 75
+            h_coefficient = width/target_width
             target_height = height/h_coefficient
             img = img.resize((int(target_width), int(target_height)), PIL.Image.ANTIALIAS)
-            img.save(self.thumbnail.path, quality=100)
+            print(self.cover.file)
+            thumbnail_path = f'/thumbnails/{self.cover.path}'
+            # img.save(thumbnail_path, quality=100)
             img.close()
-            self.thumbnail.close()
+            self.cover.close()
 
     def __str__(self):
         return f'{self.title}'
@@ -111,3 +115,9 @@ class Video(models.Model):
     tags = models.ManyToManyField(Tag, verbose_name='danh mục')
     def __str__(self):
         return f'{self.title}'
+    
+class CountView(models.Model):
+    post = models.OneToOneField(Post, on_delete=models.CASCADE, blank=True, null=True)
+    video = models.OneToOneField(Video, on_delete=models.CASCADE, blank=True, null=True)
+    count = models.IntegerField()
+

@@ -10,7 +10,7 @@
     <div class="col-lg-7 ">
       <form method="post" action="#" id="printJS-form">
         {% if post.cover %}
-      <img src="{{post.cover.url}}" alt="" class="img-fluid mb-4 rounded-3 shadow-sm border">
+      <img src="{{post.cover.url}}" alt="" class="img-fluid mb-4 rounded-3 shadow-sm">
 
         {% endif %}
       <h1>{{ post.title }}</h1>
@@ -31,25 +31,30 @@
 
     </div>
     <div class="col-lg-4" >
-      <div  style="position: sticky;
+      <div style="position: sticky;
       top: 100px;">
         {% with author=post.author %}
         {% include 'include/author.html' %}
         {% endwith %}
-        <h4 class="pb-2 mb-4 mt-4 border-bottom border-2 border-danger">Cùng chuyên mục</h4>
-        {% for i in '123' %}
-        <div class="row g-2 border-bottom my-2 pb-2">
+        <h4 class="pb-2 mb-3 mt-4 border-bottom border-2 border-danger">Bài viết mới</h4>
+        {% for i in '12345' %}
+        <div class="row g-2my-1 pb-2 ">
           <div class="col-3">
             <img
               src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
               alt="" class="img-fluid rounded shadow-sm border">
           </div>
           <div class="col-9">
-            <h6>Tên bài viết</h6>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto i...</p>
+            <h6 class="mb-0 fw-normal">Tên bài viết  dolor sit amet consectetur adipisicing elit. Ius</h6>
           </div>
+          
+          {% if not forloop.last %}
+          <div class="col-12"><hr></div>
+          {% endif %} 
+     
         </div>
         {% endfor %}
+
       </div>
     </div>
   </div>

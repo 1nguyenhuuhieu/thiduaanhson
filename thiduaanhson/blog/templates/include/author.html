@@ -1,0 +1,22 @@
+<div class="p-2 p-sm-4  mb-3 bg-body-tertiary rounded border mt-5 shadow-sm">
+    <h4> {{ author.name|title }}</h4>
+    <hr>
+    <div class="row">
+        <div class="col-3 d-flex flex-column justify-content-center">
+            <div>
+                <img src="https://math-media.byjusfutureschool.com/bfs-math/2022/07/04185628/Asset-1-8-300x300.png" alt="" class="img-fluid border border-2 rounded-circle shadow-sm">
+            </div>
+        </div>
+        <div class="col-9">
+            <p class="mb-0 fw-semibold">
+                {% if author.description %}
+                {{ author.description }}
+                {% endif %}
+            </p>
+            <p class="mt-auto text-muted fst-italic small">
+                Bài viết: 15
+            </p>
+        </div>
+    </div>
+
+  </div>

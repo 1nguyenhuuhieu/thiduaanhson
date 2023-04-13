@@ -1,0 +1,26 @@
+<div class="d-flex flex-row flex-sm-column mt-5 fs-6 text-muted align-items-center mt-5" style="position: sticky;
+top: 100px;">
+<button class="btn btn-light" data-sharer="facebook" data-hashtag="thiduananhson"
+data-url="{{ request.build_absolute_uri }}" data-bs-toggle="tooltip" data-bs-title="Chia sẻ qua facebook"><i
+ class="bi bi-facebook"></i></button>
+<button class="btn  btn-light mt-2" data-sharer="email" data-title="Chia sẻ từ thiduananhson.com"
+data-url="{{ request.build_absolute_uri }}" data-subject="Chia sẻ từ thiduananhson.com"
+data-to="some@email.com" data-bs-toggle="tooltip" data-bs-title="Chia sẻ qua email"><i
+ class="bi bi-envelope mt-2"></i></button>
+<button class="btn btn-copy  btn-light mt-2" data-clipboard-text="{{ request.build_absolute_uri }}"
+id="copyBtn" data-bs-toggle="tooltip" data-bs-title="Copy liên kết"><i class="bi bi-link mt-2"></i></button>
+<hr class="w-25">
+<span data-bs-toggle="tooltip" data-bs-title="Bình luận">
+<i class="bi bi-chat-left"></i>
+</span>
+<small class="fs-6">0</small>
+<i class="bi bi-heart mt-2"  data-bs-toggle="tooltip" data-bs-title="Lượt thích"></i>
+<small class="fs-6">0</small>
+<i class="bi bi-eye mt-2 mb-0" data-bs-toggle="tooltip" data-bs-title="Lượt xem"></i>
+<small class="fs-6">0</small>
+<hr class="w-25">
+<a href="{% url 'index' %}" class="text-decoration-none">
+<i class="bi bi-arrow-left"  data-bs-toggle="tooltip" data-bs-title="Về trang chủ"></i>
+
+</a>
+</div>

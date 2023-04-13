@@ -3,50 +3,38 @@
 {% load humanize %}
 {% block content %}
 {% include 'home/slide.html' %}
-
   <!-- end nav bar -->
   <!-- heading news -->
 <div class="container">
   {% if highlight_post %}
+  {% with post=highlight_post %}
   <div class="row justify-content-center mt-4 mt-sm-5">
     <div class="col-lg-10">
-
       <div class="px-1 px-sm-5 py-3 py-sm-5 mb-4 bg-body-tertiary rounded-5 border shadow-sm">
         <div class="container-fluid">
           <div class="d-flex justify-content-between align-items-center border-bottom border-3 border-danger pb-3">
             <h4 class="text-danger fw-bold"><i class="bi bi-star-fill me-2"></i>BÀI VIẾT NỔI BẬT</h4>
             <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Xem tất cả<i class="bi bi-arrow-right ms-2"></i></a> 
           </div>
-    
-          <h1 class="display-6 fw-bold mt-3">{{ highlight_post.title }}</h1>
-          <div>
-            
-            <span class="fw-semibold"><i class="bi bi-person-circle me-1"></i>{{ highlight_post.author.name }}</span>
-            <span class="text-muted mx-2"><i class="bi bi-calendar me-1"></i>{{ highlight_post.created_time|naturaltime }}</span>
-            
-            {% if highlight_post.tags  %}{% for tag in highlight_post.tags.all  %} <a href="#"><span class="badge rounded-pill text-bg-warning"><i class="bi bi-folder me-1"></i>{{ tag.title }}</span></a>
-              {% endfor %} {% endif %}
-          </div>
+          <h1 class="display-6 fw-bold mt-3">{{ post.title }}</h1>
+          {% include 'include/post_info.html' %}
           <div class="col-lg-12 fs-4 mt-3">{{highlight_post.content|striptags|safe|truncatewords:50 }}</div>
           <a href="{% url 'post' post_id=highlight_post.id %}" class="btn btn-danger btn-lg rounded-pill mt-4" type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></a>
         </div>
       </div>
     </div>
   </div>
+  {% endwith %}
 {% endif %}
     </div>
 {% include 'home/video.html' %}
-
-  
 <div class="py-5 my-5 "  class="parallax-window py-5" data-parallax="scroll" data-image-src="{% static 'imgs/spotlight_quote.jpg' %}"  style="min-height: 300px;">
-
   <div id="carouselExampleAutoplaying2" class="carousel slide" data-bs-ride="carousel">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-lg-8">
-
               <blockquote class="blockquote text-center">
                 <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
                 <p class="text-warning display-6">Thi đua là yêu nước, yêu nước thì phải thi đua, những người thi đua là những người yêu nước nhất.</p>
@@ -55,17 +43,13 @@
                 </footer>
               </blockquote>
             </div>
-      
-
           </div>
         </div>
-
       </div>
       <div class="carousel-item">
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-lg-8">
-
               <blockquote class="blockquote text-center">
                 <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
                 <p class="text-warning display-6">Tán thưởng là một điều tuyệt vời. Nó khiến những gì hay ho ở người khác cũng thuộc về chúng ta.</p>
@@ -74,17 +58,13 @@
                 </footer>
               </blockquote>
             </div>
-      
-
           </div>
         </div>
-
       </div>
       <div class="carousel-item">
         <div class="container-fluid">
           <div class="row justify-content-center">
             <div class="col-lg-8">
-
               <blockquote class="blockquote text-center">
                 <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
                 <p class="text-warning display-6">Nghe lời chê bai mà giận là ngồi cho người gièm pha. Nghe câu khen ngợi mà mừng làm mồi cho người nịnh hót.</p>
@@ -93,13 +73,9 @@
                 </footer>
               </blockquote>
             </div>
-      
-
           </div>
         </div>
-
       </div>
-
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying2" data-bs-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -127,7 +103,6 @@
       <div class="d-flex justify-content-between align-items-center  mb-3 border-bottom border-3 border-danger pb-3">
       <h4 class="text-danger fw-bold"><i class="bi bi-newspaper me-2"></i>BÀI VIẾT MỚI NHẤT</h4>
       <a href="#" class="btn btn-sm btn-outline-dark rounded-pill"><i class="bi bi-arrow-right me-2"></i>Xem tất cả</a> 
-
       </div>
         <div class="list-group shadow-sm">
           {% for i in '12345' %}
@@ -147,7 +122,6 @@
   </div>
 </div>
   <!-- end heading news -->
-
   <!-- thầy trò viết -->
   <section class="bg-body-tertiary">
     <div class=" container py-0 py-lg-5 ">
@@ -182,7 +156,6 @@
         </div>
         <div class="col-lg-7 mr-2">
           <div class="card bg-body-tertiary p-0 border-0 ">
-
             <div class="card-body p-0 pt-3">
               <h3 class="card-title fontthaytroviet" style="font-weight: bold;">Thủ khoa và tương lai</h3>
               <small class="text-muted">Đăng ngày 10/9/2020 trong <a href="#">Tin tức</a></small>
@@ -382,8 +355,6 @@
               Rú Cao Vều ấp ủ tình thương”
           </p>
           <div class="text-start mt-3 fs-5">
-
-         
           <p>
             Huyện Anh Sơn nằm dọc theo đôi bờ sông Lam, Quốc lộ 7, cách thành phố Vinh 100 km về phía tây bắc, có vị trí địa lý:
               <ul>
@@ -394,14 +365,11 @@
               </ul>
             </p>
             <p>
-
               Huyện có diện tích 592,5 km². Theo thống kê 2019, huyện có 116.922 người,  mật độ dân số đạt 197 người/km². Có 8 xã đồng bào dân tộc thiểu số 8.000 người (chiếm 6,4% dân số toàn huyện). Số người trong độ tuổi có khả năng lao động hơn: 47.000 người. Số người được giải quyết việc làm trong năm bình quân: 1.375 người. 12% dân số theo đạo Thiên Chúa.
             </p>
               <p>
                 Đây là huyện được UNESCO đưa vào danh sách các địa danh thuộc Khu dự trữ sinh quyển miền tây Nghệ An.
-
               </p> 
-      
         </div>
         </div>
         <!-- end giới thiệu -->
@@ -418,7 +386,6 @@
                   <li>Năm 1919, chính quyền thực dân phong kiến bỏ cấp hành chính trung gian, đổi phủ ngang huyện, huyện Lương Sơn đổi thành phủ Anh Sơn trực thuộc tỉnh Nghệ An.</li>
                   <li>Đến năm 1946, phủ Anh Sơn đổi thành huyện Anh Sơn.<a href="https://vi.wikipedia.org/wiki/Anh_%C4%90%C3%B4" target="_blank" class="text-decoration-none ms-1">Xem thêm</a></li>
                 </ul>
-             
             </li>
             <li>
               <span class="fw-bold h5">Thành lập</span>
@@ -436,6 +403,5 @@
       </div>
     </div>
   </section><!-- end about us -->
-
   <!-- footer -->
 {% endblock %}

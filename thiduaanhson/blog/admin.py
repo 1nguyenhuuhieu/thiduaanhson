@@ -8,7 +8,11 @@ class SlideAdmin(admin.ModelAdmin):
     fields = ('title', 'cover','image_tag', 'is_show','post', )
     readonly_fields = ('image_tag',)
 
-admin.site.register(Post)
+@admin.register(Post)
+class PostAdmin(admin.ModelAdmin):
+    filter_horizontal = ('tags',)
+
+
 admin.site.register(Author)
 admin.site.register(Comment)
 admin.site.register(Member)
@@ -19,6 +23,7 @@ class VideoAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    exclude = ('slug',)
+    readonly_fields = ('id', 'slug',)
+
     
 

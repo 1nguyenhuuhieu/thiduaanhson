@@ -5,6 +5,8 @@ import PIL.Image
 from django.contrib.auth.models import User
 from django.template.defaultfilters import slugify
 from django.utils.html import mark_safe
+import os
+
 
 
 # Create your models here.
@@ -61,7 +63,6 @@ class Post(models.Model):
     title = models.CharField(max_length=1000, verbose_name='tên bài viết')
     content = RichTextUploadingField(verbose_name='nội dung')
     cover = models.ImageField(upload_to='post-covers/', verbose_name='ảnh bìa', blank=True, null=True)
-    thumbnail = models.ImageField(upload_to='thumbnails/', verbose_name='ảnh thumbnail', blank=True, null=True)
     tags = models.ManyToManyField(Tag, verbose_name='danh mục', blank=True)
     created_time = models.DateTimeField(auto_now_add=True,null=True)
     updated_time = models.DateTimeField(auto_now=True,null=True)
@@ -70,21 +71,6 @@ class Post(models.Model):
     class Meta:
         verbose_name = 'bài viết'
         verbose_name_plural = 'bài viết'
-
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
-        if self.cover:
-            img = PIL.Image.open(self.cover)
-            width, height = img.size
-            target_width = 75
-            h_coefficient = width/target_width
-            target_height = height/h_coefficient
-            img = img.resize((int(target_width), int(target_height)), PIL.Image.ANTIALIAS)
-            print(self.cover.file)
-            thumbnail_path = f'/thumbnails/{self.cover.path}'
-            # img.save(thumbnail_path, quality=100)
-            img.close()
-            self.cover.close()
 
     def __str__(self):
         return f'{self.title}'

@@ -9,6 +9,9 @@ data-to="some@email.com" data-bs-toggle="tooltip" data-bs-title="Chia sẻ qua e
  class="bi bi-envelope mt-2"></i></button>
 <button class="btn btn-lg btn-copy  btn-light mt-2" data-clipboard-text="{{ request.build_absolute_uri }}"
 id="copyBtn" data-bs-toggle="tooltip" data-bs-title="Copy liên kết"><i class="bi bi-link mt-2"></i></button>
+
+<button class="btn btn-lg btn-light mt-2" data-bs-toggle="tooltip" data-bs-title="In bài viết"  onclick="printJS('printJS-form', 'html')"><i class="bi bi-printer mt-2"></i></button>
+
 <hr class="w-25">
 <span data-bs-toggle="tooltip" data-bs-title="Bình luận">
 <i class="bi bi-chat-left"></i>

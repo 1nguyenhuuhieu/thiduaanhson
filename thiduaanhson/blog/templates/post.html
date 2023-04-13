@@ -3,30 +3,32 @@
 {% load static %}
 {% block content %}
 <div class="container">
-  <div class="row mt-4 justify-content-center pb-5">
+  <div class="row mt-5 justify-content-center pb-5">
     <div class="col-lg-1 text-center ">
       {% include 'include/left_info.html' %}
     </div>
     <div class="col-lg-7 ">
-      <img src="{{post.cover}}" alt="" class="img-fluid">
+      <form method="post" action="#" id="printJS-form">
+        {% if post.cover %}
+      <img src="{{post.cover.url}}" alt="" class="img-fluid mb-4 rounded-3 shadow-sm border">
+
+        {% endif %}
       <h1>{{ post.title }}</h1>
         {% include 'include/post_info.html' %}
-
       <div class="fs-5 border-top pt-2 mt-3 mb-5">
-
         <div class="d-flex justify-content-end"> 
           <span class="text-muted fst-italic small">
             <i class="bi bi-hourglass-top me-2"></i>Thời gian đọc: <span id="time"></span> phút
           </span>
         </div>
-
         <article id="article">
           {% autoescape off %}
           {{ post.content }}
           {% endautoescape %}
       </article>
-
       </div>
+    </form>
+
     </div>
     <div class="col-lg-4" >
       <div  style="position: sticky;

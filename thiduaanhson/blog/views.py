@@ -45,20 +45,25 @@ def videos(request):
     return render(request, 'videos.html', context)
 
 
-def category(request, category_id=None, page=1 ):
+def category(request, category_id=None, page=1):
     if category_id:
-        posts = Post.objects.filter(category=category_id).order_by('-created_time')
+        posts = Post.objects.filter(tags=category_id).order_by('-created_time')
     else:
         posts = Post.objects.all().order_by('-created_time')
 
+    top_view_posts =  posts.order_by('-view_count')[:5]
+
+    category = get_object_or_404(Tag, pk=category_id)
     objects = posts
-    p = Paginator(objects, 2)
+    p = Paginator(objects, 4)
     current_page = p.page(page)
     list_object = p.page(page).object_list
     context = {
         'p': p,
         'list_object': list_object,
         'current_page': current_page,
-        'category_id': category_id
+        'category_id': category_id,
+        'category': category,
+        'top_view_posts': top_view_posts
     }
     return render(request, 'category.html', context)

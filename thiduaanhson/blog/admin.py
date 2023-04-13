@@ -25,7 +25,7 @@ class VideoAdmin(admin.ModelAdmin):
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
-    readonly_fields = ('id', 'slug',)
+    readonly_fields = ('id', )
 
     
 

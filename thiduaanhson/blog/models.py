@@ -7,9 +7,6 @@ from django.template.defaultfilters import slugify
 from django.utils.html import mark_safe
 import os
 
-
-
-# Create your models here.
 class Slide(models.Model):
     title = models.CharField(max_length=200, verbose_name='tiêu đề', default='banner')
     cover = models.ImageField(upload_to='slides/',verbose_name='ảnh slide', help_text='ảnh slide nên có tỉ lệ cao:rộng là 1:4 để đẹp nhất ')
@@ -28,6 +25,8 @@ class Slide(models.Model):
             img.save(self.cover.path, quality=100)
             img.close()
             self.cover.close()
+
+
     def image_tag(self):
         return mark_safe('<img src="%s" height=100' % (self.cover.url))
     image_tag.short_description = 'Image'
@@ -41,18 +40,12 @@ class Slide(models.Model):
     
 class Tag(models.Model):
     title = models.CharField(max_length=200, verbose_name='tên đầy đủ')
-    slug = models.SlugField(max_length=200, unique=True, null=True, blank=True)
     description = models.CharField(max_length=1000, verbose_name='mô tả', null=True)
-    cover = models.ImageField(upload_to='cover-category/',verbose_name='ảnh bìa', blank=True, null=True)
+    cover = models.ImageField(upload_to='cover-tag/',verbose_name='ảnh bìa', blank=True, null=True)
     parrent_tag = models.ForeignKey('self', verbose_name='danh mục cha', blank=True, on_delete=models.CASCADE, null=True)
     class Meta:
         verbose_name = 'danh mục'
         verbose_name_plural = 'danh mục'
-    
-    def save(self, *args, **kwargs):
-        # just check if name or location.name has changed
-        self.slug = slugify(self.title)
-        super(Tag, self).save(*args, **kwargs)
 
     def __str__(self):
         return f'{self.title}'

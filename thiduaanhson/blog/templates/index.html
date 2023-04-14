@@ -16,7 +16,7 @@
             <h4 class="text-danger fw-bold"><i class="bi bi-star-fill me-2"></i>BÀI VIẾT NỔI BẬT</h4>
             <a href="{% url 'posts' %}" class="btn btn-sm btn-outline-dark rounded-pill">Tất cả<i class="bi bi-arrow-right ms-2"></i></a> 
           </div>
-          <h1 class="display-6 fw-bold mt-3">{{ post.title }}</h1>
+          <h1 class="display-6 fw-bold mt-3"> <a href="{% url 'post' post_id=highlight_post.id %}" class="text-decoration-none link-dark">{{ post.title }}</a></h1>
           {% include 'include/post_info.html' %}
           <div class="col-lg-12 fs-5 fs-sm-4 mt-3">{{highlight_post.content|striptags|safe|truncatewords:50 }}</div>
           <a href="{% url 'post' post_id=highlight_post.id %}" class="btn btn-danger rounded-pill mt-4" type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></a>

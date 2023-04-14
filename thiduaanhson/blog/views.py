@@ -5,7 +5,7 @@ from django.shortcuts import get_object_or_404
 
 def index(request):
     slides = Slide.objects.filter(is_show=True)[:3]
-    highlight_post = Post.objects.latest('-is_highlight')
+    highlight_post = Post.objects.latest('is_highlight', 'created_time')
     videos = Video.objects.all().order_by('created_time')[:3]
     latest_posts = Post.objects.all().order_by('-created_time')[:5]
     context = {

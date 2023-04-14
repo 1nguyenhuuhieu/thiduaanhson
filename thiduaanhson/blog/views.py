@@ -45,6 +45,15 @@ def videos(request):
     return render(request, 'videos.html', context)
 
 
+def posts(request):
+    posts = Post.objects.all().order_by('-created_time')
+
+    context = {
+        'posts': posts
+    }
+    return render(request, 'posts.html', context)
+
+
 def category(request, category_id=None, page=1):
     if category_id:
         posts = Post.objects.filter(tags=category_id).order_by('-created_time')

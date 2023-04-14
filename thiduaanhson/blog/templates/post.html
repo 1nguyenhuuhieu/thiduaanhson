@@ -35,22 +35,31 @@
         {% with author=post.author %}
         {% include 'include/author.html' %}
         {% endwith %}
+        {% if latest_posts %}
+        {% with posts=latest_posts %}
         <h4 class="pb-2 mb-3 mt-4 border-bottom border-2 border-danger">Bài viết mới</h4>
-        {% for i in '12345' %}
+        {% for post in posts %}
+        <div class="card border-0">
         <div class="row g-2 my-1">
           <div class="col-3">
-            <img
-              src="https://images.unsplash.com/photo-1598214886806-c87b84b7078b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=725&q=80"
-              alt="" class="img-fluid rounded shadow-sm border">
+            {% if post.cover %}
+            <img src="{{ post.cover.url }}" class="img-fluid rounded-3 shadow-sm" alt="...">
+            {% else %}
+            <img src="{% static 'imgs/post-cover.png' %}" class="img-fluid rounded-3 shadow-sm" alt="...">
+            {% endif %}
           </div>
           <div class="col-9">
-            <h6 class="mb-0 fw-normal">Tên bài viết  dolor sit amet consectetur adipisicing elit. Ius</h6>
+            <h6 class="mb-0 fw-normal"> <a href="{% url 'post' post_id=post.id %}" class="stretched-link link-dark text-decoration-none">{{ post.title }}</a> </h6>
+            <p class="text-muted mt-2"> {{ post.created_time|naturaltime }}</p>
           </div>
           {% if not forloop.last %}
           <div class="col-12"><hr class="my-0"></div>
           {% endif %} 
         </div>
+      </div>
         {% endfor %}
+        {% endwith %}
+        {% endif %}
       </div>
     </div>
   </div>

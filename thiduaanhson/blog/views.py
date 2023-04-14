@@ -2,8 +2,10 @@ from django.shortcuts import render
 from .models import *
 from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404
+import random
 
 def index(request):
+    request.session['test'] = random.random()
     slides = Slide.objects.filter(is_show=True)[:3]
     highlight_post = Post.objects.latest('is_highlight', 'created_time')
     videos = Video.objects.all().order_by('created_time')[:3]
@@ -14,10 +16,13 @@ def index(request):
         'highlight_post': highlight_post,
         'latest_posts': latest_posts
     }
+
+    print(request.session['test'])
     return render(request, 'index.html', context)
 
 def post(request, post_id):
     post = Post.objects.get(pk=post_id)
+    latest_posts = Post.objects.order_by('-created_time')[:5]
     try:
         post.view_count += 1
         post.save()
@@ -25,7 +30,8 @@ def post(request, post_id):
         pass
 
     context = {
-        'post': post
+        'post': post,
+        'latest_posts': latest_posts
     }
     
     return render(request, 'post.html', context)

@@ -33,7 +33,12 @@ def post(request, post_id):
             request.session[reaction_name] = True
             post.like += 1
         post.save()
-
+    
+    if request.method == 'POST' and 'comment' in request.POST:
+        comment_text = request.POST['comment_text']
+        comment_author = request.POST['comment_author']
+        comment = Comment(comment=comment_text, author=comment_author, post=post)
+        comment.save()
     
     latest_posts = Post.objects.order_by('-created_time')[:5]
     try:

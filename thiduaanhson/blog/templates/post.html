@@ -14,12 +14,23 @@
         {% endif %}
       <h1>{{ post.title }}</h1>
         {% include 'include/post_info.html' %}
-      <div class="fs-5 border-top pt-2 mt-3 mb-5">
-        <div class="d-flex justify-content-end"> 
+
+        <div class="d-flex justify-content-between align-items-center my-3"> 
+          <form method="post">
+            {% csrf_token %}
+            <button type="submit" name="like" class="btn btn-sm btn-outline-secondary">{% if  has_reaction  %}Đã thích{% else %}Thích{% endif%}<i
+                    class="ms-2 bi bi-heart{% if  has_reaction  %}-fill text-danger{% endif %}"></i></button>
+          </form>
+        
+
           <span class="text-muted fst-italic small">
-            <i class="bi bi-hourglass-top me-2"></i>Thời gian đọc: <span id="time"></span> phút
+            <i class="bi bi-hourglass-top me-2"></i>Thời gian đọc <span id="time"></span> phút
           </span>
         </div>
+
+
+      <div class="fs-5 border-top border-danger border-2  pt-2 mt-3 mb-5">
+
         <article id="article">
           {% autoescape off %}
           {{ post.content }}
@@ -72,7 +83,8 @@
     const imgs = postDiv.querySelectorAll("img");
     for (let i = 0; i < imgs.length; i++) {
       imgs[i].style = '';
-      imgs[i].className = 'img-fluid rounded-3 shadow-sm  my-2';
+      imgs[i].className = 'img-fluid rounded-3 shadow-sm my-2';
+      imgs[i].parentElement.className = 'text-center';
     }
   };
   function readingTime() {

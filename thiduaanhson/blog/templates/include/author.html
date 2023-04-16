@@ -1,10 +1,13 @@
+{% load static %}
 <div class="p-2 p-sm-3 bg-body-tertiary rounded border shadow-sm">
     <h4 class="fst-italic">Giới thiệu tác giả</h4>
     <hr class="my-2">
     <div class="row">
         <div class="col-3 d-flex flex-column justify-content-center">
             <div>
-                <img src="https://math-media.byjusfutureschool.com/bfs-math/2022/07/04185628/Asset-1-8-300x300.png" alt="" class="img-fluid border border-2 rounded-circle shadow-sm">
+                {% if author.avatar %}
+                <img src="{{author.avatar.url}}" alt="" class="img-fluid border border-2 rounded-circle shadow-sm">
+                {% endif %}
             </div>
         </div>
         <div class="col-9">
@@ -15,7 +18,7 @@
                 {% endif %}
             </p>
             <p class="m-0 text-muted fst-italic small">
-                Bài viết: 15
+                Bài viết: {{ author.post_set.all|length }}
             </p>
         </div>
     </div>

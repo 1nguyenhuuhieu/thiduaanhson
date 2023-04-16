@@ -75,12 +75,18 @@ class Comment(models.Model):
     author = models.CharField(max_length=50)
     created_time = models.DateTimeField(auto_now_add=True,null=True)
 
-
-
 class Author(models.Model):
     name = models.CharField(max_length=200, verbose_name='tên')
     description = models.CharField(max_length=200, verbose_name='mô tả ngắn')
     avatar = models.ImageField(upload_to='avatars/', verbose_name='ảnh đại diện', blank=True)
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        if self.avatar:
+            img = PIL.Image.open(self.avatar)
+            img = img.resize((200, 200), PIL.Image.ANTIALIAS)
+            img.save(self.avatar.path, quality=100)
+            img.close()
+            self.avatar.close()
 
 
     class Meta:
@@ -89,8 +95,7 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.name}' 
-class Comment(models.Model):
-    author = models.ForeignKey('Member', blank=True, null=True, on_delete=models.CASCADE)
+
 
 class Member(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)

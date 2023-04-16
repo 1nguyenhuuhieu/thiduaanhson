@@ -7,6 +7,8 @@
             <div>
                 {% if author.avatar %}
                 <img src="{{author.avatar.url}}" alt="" class="img-fluid border border-2 rounded-circle shadow-sm">
+                {% else %}
+                <img src=" {% static 'imgs/logo-circle.png' %}" alt="" class="img-fluid border border-2 rounded-circle shadow-sm">
                 {% endif %}
             </div>
         </div>
@@ -18,7 +20,7 @@
                 {% endif %}
             </p>
             <p class="m-0 text-muted fst-italic small">
-                Bài viết: {{ author.post_set.all|length }}
+                Bài viết: {{ author.post_set.all|length }}, Lượt thích: {{ author_liked }}
             </p>
         </div>
     </div>

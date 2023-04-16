@@ -74,7 +74,9 @@ class Post(models.Model):
             return None
         
     def tags_list(self):
-        
+        return ';'.join(tag.title for tag in self.tags.all())
+    def tags_list_id(self):
+        return list(tag.id for tag in self.tags.all())
     class Meta:
         verbose_name = 'bài viết'
         verbose_name_plural = 'bài viết'

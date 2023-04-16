@@ -44,7 +44,7 @@
               href="#">Trước</a></li>
           {% for number_page in p.page_range %}
           <li class="page-item"><a class="page-link {% if current_page.number == number_page %}active{% endif %}"
-              href="{% url 'category' category_id=category.id page=number_page %}">{{number_page}}</a></li>
+              href="{% url 'tag_paginate' tag_id=tag.id page=number_page %}">{{number_page}}</a></li>
           {% endfor %}
           <li class="page-item {% if not current_page.has_next %} disabled {% endif %}"><a class="page-link"
               href="#">Sau</a></li>
@@ -57,11 +57,11 @@
     <div class="col-lg-4">
       <div>
         <div class="p-4 mb-3 bg-body-tertiary rounded border">
-          <h4 class="fst-italic">Danh mục con</h4>
+          <h4 class="fst-italic">Danh mục</h4>
           <hr>
-          {% if category.tag_set.all %}
-          {% for child in category.tag_set.all %}
-           <a href="{% url 'category' category_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">{{ child.title }}</a>
+          {% if tag.tag_set.all %}
+          {% for child in tag.tag_set.all %}
+           <a href="{% url 'tag' tag_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">{{ child.title }}</a>
           {% endfor %}
           {% endif %}
         </div>

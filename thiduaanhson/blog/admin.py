@@ -11,8 +11,10 @@ class SlideAdmin(admin.ModelAdmin):
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
     list_display = ('author', 'title', 'is_highlight', 'is_public', 'youtube_url')
+    list_filter = ('author', 'is_highlight', 'is_public',  'tags')
     filter_horizontal = ('tags',)
     readonly_fields = ('view_count', 'like')
+    search_fields = ("title", 'author.name', 'tags.title',)
 
 
 

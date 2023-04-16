@@ -51,17 +51,30 @@ class Tag(models.Model):
         return f'{self.title}'
     
 class Post(models.Model):
+    title = models.CharField(max_length=1000, verbose_name='tên bài viết')
     author = models.ForeignKey('Author', verbose_name='tác giả', blank=True, null=True, on_delete=models.CASCADE)
     is_highlight = models.BooleanField(verbose_name='có phải bài viết nổi bật', default=False)
-    title = models.CharField(max_length=1000, verbose_name='tên bài viết')
+    is_public = models.BooleanField(verbose_name='có hiển thị bài viết', default=True)
     content = RichTextUploadingField(verbose_name='nội dung')
+    youtube_url = models.URLField(max_length=40, blank=True, null=True, verbose_name='URL video youtube', help_text='dán url video youtube vào đây')
     cover = models.ImageField(upload_to='post-covers/', verbose_name='ảnh bìa', blank=True, null=True)
     tags = models.ManyToManyField(Tag, verbose_name='danh mục', blank=True)
     created_time = models.DateTimeField(auto_now_add=True,null=True)
     updated_time = models.DateTimeField(auto_now=True,null=True)
     view_count = models.IntegerField(blank=True, null=True, default=0, verbose_name='số lượt xem')
     like = models.IntegerField(blank=True, null=True, default=0, verbose_name='số lượt like')
-    
+
+    def youtube_id(self):
+        if self.youtube_url:
+            youtube_url = self.youtube_url
+            str1_s = youtube_url.split('/')
+            str1_s = str1_s[3].split('?')
+            return str1_s[0]
+        else:
+            return None
+        
+    def tags_list(self):
+        
     class Meta:
         verbose_name = 'bài viết'
         verbose_name_plural = 'bài viết'
@@ -74,6 +87,12 @@ class Comment(models.Model):
     comment = models.CharField(max_length=1000)
     author = models.CharField(max_length=50)
     created_time = models.DateTimeField(auto_now_add=True,null=True)
+    class Meta:
+        verbose_name = 'bình luận'
+        verbose_name_plural = 'bình luận'
+
+    def __str__(self):
+        return f'{self.comment}' 
 
 class Author(models.Model):
     name = models.CharField(max_length=200, verbose_name='tên')
@@ -95,22 +114,3 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.name}' 
-
-
-class Member(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE)
-
-class Video(models.Model):
-    title = models.CharField(max_length=200, verbose_name='tiêu đề')
-    author = models.ForeignKey(Author, blank=True, null=True, on_delete=models.CASCADE, verbose_name='tác giả')
-    youtube_id = models.CharField(max_length=20,blank=True, null=True, verbose_name='id video youtube')
-    created_time = models.DateTimeField(auto_now_add=True, null=True)
-    tags = models.ManyToManyField(Tag, verbose_name='danh mục')
-    def __str__(self):
-        return f'{self.title}'
-    
-class CountView(models.Model):
-    post = models.OneToOneField(Post, on_delete=models.CASCADE, blank=True, null=True)
-    video = models.OneToOneField(Video, on_delete=models.CASCADE, blank=True, null=True)
-    count = models.IntegerField()
-

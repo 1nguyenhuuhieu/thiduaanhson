@@ -10,18 +10,15 @@ class SlideAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
+    list_display = ('author', 'title', 'is_highlight', 'is_public', 'youtube_url')
     filter_horizontal = ('tags',)
-    readonly_fields = ('view_count',)
+    readonly_fields = ('view_count', 'like')
 
 
 
 admin.site.register(Author)
 admin.site.register(Comment)
-admin.site.register(Member)
 
-@admin.register(Video)
-class VideoAdmin(admin.ModelAdmin):
-    filter_horizontal = ('tags',)
 
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):

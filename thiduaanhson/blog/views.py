@@ -17,11 +17,24 @@ def index(request):
         'latest_posts': latest_posts
     }
 
-    print(request.session['test'])
     return render(request, 'index.html', context)
 
 def post(request, post_id):
     post = Post.objects.get(pk=post_id)
+
+    reaction_name = f'has_reaction_{post_id}'
+    has_reaction = reaction_name in request.session.keys()
+
+    if request.method == 'POST' and 'like' in request.POST:
+        if has_reaction and has_reaction==True:
+            del request.session[reaction_name]
+            post.like -= 1
+        else:
+            request.session[reaction_name] = True
+            post.like += 1
+        post.save()
+
+    
     latest_posts = Post.objects.order_by('-created_time')[:5]
     try:
         post.view_count += 1
@@ -29,12 +42,18 @@ def post(request, post_id):
     except:
         pass
 
+    post = Post.objects.get(pk=post_id)
+    has_reaction = reaction_name in request.session.keys()
+
     context = {
         'post': post,
-        'latest_posts': latest_posts
+        'latest_posts': latest_posts,
+        'has_reaction': has_reaction
     }
     
     return render(request, 'post.html', context)
+
+
 
 def video(request, video_id):
     video = get_object_or_404(Video, pk=video_id)

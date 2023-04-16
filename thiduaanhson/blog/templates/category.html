@@ -61,7 +61,7 @@
           <hr>
           {% if category.tag_set.all %}
           {% for child in category.tag_set.all %}
-           <a href="#" class="btn btn-sm btn-warning m-1 rounded-pill">{{ child.title }}</a>
+           <a href="{% url 'category' category_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">{{ child.title }}</a>
           {% endfor %}
           {% endif %}
         </div>

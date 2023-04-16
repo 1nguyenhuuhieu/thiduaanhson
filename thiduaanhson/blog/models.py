@@ -60,6 +60,7 @@ class Post(models.Model):
     created_time = models.DateTimeField(auto_now_add=True,null=True)
     updated_time = models.DateTimeField(auto_now=True,null=True)
     view_count = models.IntegerField(blank=True, null=True, default=0, verbose_name='số lượt xem')
+    like = models.IntegerField(blank=True, null=True, default=0, verbose_name='số lượt like')
     
     class Meta:
         verbose_name = 'bài viết'
@@ -67,6 +68,14 @@ class Post(models.Model):
 
     def __str__(self):
         return f'{self.title}'
+
+class Comment(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)
+    comment = models.CharField(max_length=1000)
+    author = models.CharField(max_length=50)
+    created_time = models.DateTimeField(auto_now_add=True,null=True)
+
+
 
 class Author(models.Model):
     name = models.CharField(max_length=200, verbose_name='tên')

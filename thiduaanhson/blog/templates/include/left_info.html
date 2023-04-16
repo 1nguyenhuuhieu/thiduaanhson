@@ -17,8 +17,12 @@ id="copyBtn" data-bs-toggle="tooltip" data-bs-title="Copy liên kết"><i class=
 <i class="bi bi-chat-left"></i>
 </span>
 <small class="fs-6">0</small>
-<i class="bi bi-heart mt-2"  data-bs-toggle="tooltip" data-bs-title="Lượt thích"></i>
-<small class="fs-6">0</small>
+<form method="post">
+{% csrf_token %}
+
+<button type="submit" name="like" class="mt-2 btn btn-lg btn-dan"><i class="bi bi-heart{% if  has_reaction  %}-fill text-danger{% endif %}"  data-bs-toggle="tooltip" data-bs-title="Lượt thích"></i></button>
+</form>
+<small class="fs-6">{{ post.like }}</small>
 <i class="bi bi-eye mt-2 mb-0" data-bs-toggle="tooltip" data-bs-title="Lượt xem"></i>
 <small class="fs-6">{{ post.view_count }}</small>
 <hr class="w-25">

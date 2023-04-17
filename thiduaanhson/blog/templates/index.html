@@ -6,244 +6,24 @@
 {% include 'home/slide.html' %}
 <!-- end nav bar -->
 <!-- heading news -->
-<div class="container">
-  {% if highlight_post %}
-  {% with post=highlight_post %}
-  <div class="row justify-content-center mt-4 mt-sm-5">
-    <div class="col-lg-10">
-      <div class="px-0 px-sm-5 py-3 py-sm-5 mb-4 bg-body-tertiary rounded-5 border shadow-sm">
-        <div class="container-fluid">
-          <div class="d-flex  justify-content-between align-items-start border-bottom border-3 border-danger pb-3">
-            <h4 class="text-danger fw-bold"><i class="bi bi-star-fill me-2"></i>BÀI VIẾT NỔI BẬT</h4>
-            <a href="#" class="btn btn-sm btn-outline-dark rounded-pill">Tất cả<i
-                class="bi bi-arrow-right ms-2"></i></a>
-          </div>
-          <h1 class="display-6 fw-bold mt-3"> <a href="{% url 'post' post_id=highlight_post.id %}"
-              class="text-decoration-none link-dark">{{ post.title }}</a></h1>
-          {% include 'include/post_info.html' %}
-          <div class="col-lg-12 fs-5 fs-sm-4 mt-3">{{highlight_post.content|striptags|safe|truncatewords:50 }}</div>
-          <a href="{% url 'post' post_id=highlight_post.id %}" class="btn btn-danger rounded-pill mt-4"
-            type="button">Đọc tiếp<i class="bi bi-arrow-right ms-2"></i></a>
-        </div>
-      </div>
-    </div>
-  </div>
-  {% endwith %}
-  {% endif %}
-</div>
+{% include 'home/highlight.html' %}
 {% include 'home/video.html' %}
-<div class="py-5 my-5" style='height: 500px; background-image: url("{% static "imgs/spotlight_quote.jpg" %}");'>
-  <div id="carouselExampleAutoplaying2" class="carousel slide" data-bs-ride="carousel">
-    <div class="carousel-inner">
-      {% for quote in quotes %}
-      <div class="carousel-item {% if forloop.first %}active {% endif %}">
-        <div class="container-fluid">
-          <div class="row justify-content-center">
-            <div class="col-lg-8">
-              <blockquote class="blockquote text-center">
-                <i class="fas fa-quote-left mb-3 text-warning display-6"></i>
-                <p class="text-warning display-6">{{ quote.title }}</p>
-                <footer class="blockquote-footer mt-3 text-white-50">
-                  <cite title="Source Title"> {{ quote.author }}</cite>
-                </footer>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% endfor %}
-
-    </div>
-    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying2"
-      data-bs-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Previous</span>
-    </button>
-    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying2"
-      data-bs-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="visually-hidden">Next</span>
-    </button>
-  </div>
-</div>
+{% include 'home/quote.html' %}
 {% include 'home/latest_posts.html' %}
 <!-- end heading news -->
-<!-- thầy trò viết -->
-<section class="bg-body-tertiary">
-  <div class=" container py-0 py-lg-5 ">
-    <div class="row mb-5 mb-lg-5">
-      <div class="col-12 text-center">
-        <h3 class="mb-2 thaytroviet" style="font-family: 'Dancing Script', cursive;">Góc nhìn "Anh Sơn"</h3>
-        <img src="{% static 'imgs/line.png' %}" alt="" class="img-fluid mt-4" style="max-width: 200px">
-        <i class="fas fa-feather-alt mb-3" style="font-size:40px"></i>
-      </div>
-    </div>
-    <div class="row  mb-0 mb-lg-5">
-      <div class="col-lg-3 ">
-        <!-- tác giả hiện trên máy tính -->
-        <div class="d-none d-lg-block">
-          <div class="card bg-body-tertiary text-center tacgia mb-3">
-            <img src="{% static 'imgs/ngoctrinh.jpg' %}" class="card-img-top rounded-circle  px-5" alt="...">
-            <div class="card-body">
-              <h5 class="card-title m-0">Ngọc Trinh</h5> <small>
-                <span class="text-muted"> 11 Người quan tâm</span> <br>
-                <a href="#">#giáo viên</a> <a href="#">#hóa học</a></small>
-              <hr class="m-1">
-              <p class="card-text">
-                <small>
-                  <span class="text-muted">1231 Yêu thích</span> - <a href="#">14 Bài viết</a>
-                </small>
-              </p>
-              <a href="#" class="btn btn-sm btn-outline-dark"><i class="fas fa-plus mr-2"></i>Quan tâm</a>
-            </div>
-          </div>
-        </div>
-        <!-- end tác giả hiện trên máy tính -->
-      </div>
-      <div class="col-lg-7 mr-2">
-        <div class="card bg-body-tertiary p-0 border-0 ">
-          <div class="card-body p-0 pt-3">
-            <h3 class="card-title fontthaytroviet" style="font-weight: bold;">Thủ khoa và tương lai</h3>
-            <small class="text-muted">Đăng ngày 10/9/2020 trong <a href="#">Tin tức</a></small>
-            <hr class="d-lg-none">
-            <!-- tác giả hiện trên mobile -->
-            <div class="d-lg-none">
-              <div class="card mb-3 border-0 mt-2">
-                <div class="row align-items-center no-gutters">
-                  <div class="col-3 text-center">
-                    <img src="{% static 'imgs/ngoctrinh.jpg' %}" class="card-img rounded-circle" alt="...">
-                    <a href="#" class="btn btn-sm btn-outline-dark  mt-2 p-1" style="font-size: 9px"><i
-                        class="fas fa-plus mr-1"></i>Quan tâm</a>
-                  </div>
-                  <div class="col-9">
-                    <div class="card-body">
-                      <p class="card-text m-0">Nguyễn Hữu Đăng Khôi </p>
-                      <small> <span class="text-muted"> 11 Người quan tâm</span> <br> <span class="text-muted">1323
-                          Yêu thích</span> - <a href="#">14 Bài viết</a></small>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <!-- end tác giả hiện trên mobile -->
-            <p class="card-text mt-4 fontthaytroviet" style=" font-size:18px">
-              Tôi từng nổi tiếng với danh hiệu thủ khoa trường Dược mà không hề biết rằng mình lại lao đao vì chính
-              nó.
-              <br>
-              <br>
-              Đầu những năm 2000, nhà tôi còn nghèo lắm. Mẹ là giáo viên cấp một, bố làm kế toán xã, đồng lương ít ỏi
-              của họ phải nuôi hai anh em ăn học. Xem tivi, thấy sinh viên đại học Dược được một công ty mời về làm,
-              còn tặng cho một chiếc xe máy, cả nhà quyết định cho tôi thi trường này.
-              <br>
-              <br>
-              Cả dòng họ có mỗi tôi học lớp chuyên Toán, thành viên đội tuyển thi học sinh giỏi quốc gia môn Toán của
-              tỉnh. Ngày báo điểm, tôi trở thành thủ khoa đại Dược Hà Nội. "Nhất Y, nhì Dược, tạm được Bách Khoa",
-              điểm chuẩn vào đại học Dược năm đó là 27,5, tức 9 điểm một môn mà còn trượt. Tôi đạt 30/30 điểm thi vào
-              đại học Dược khối A, 29/30 thi vào Đại học Y khối B, bố mẹ và gia đình tôi vui mừng khôn xiết...
-            </p>
-            <div class="d-lg-none">
-              <div class="row mt-4   ">
-                <div class="col  p-0 d-flex justify-content-center border-right"><i class="fas fa-heart  mr-2"></i>
-                  <span class="badge badge">4</span>
-                </div>
-                <div class="col p-0  d-flex justify-content-center border-right"><i class="fas fa-comments  mr-2"></i>
-                  <span class="badge">4</span>
-                </div>
-                <div class="col  p-0 d-flex justify-content-center"><i class="fas fa-eye mr-2"></i> <span
-                    class="badge">4</span></div>
-              </div>
-              <hr>
-            </div>
-            <p class="text-right my-5"> <a href="#" class="text-decoration-none"> Đọc tiếp <i
-                  class="fas fa-arrow-right ml-2"></i></a> </p>
-          </div>
-        </div>
-      </div>
-      <div class="col-1 text-center text-secondary ml-5 d-none d-lg-block">
-        <p><i class="far fa-heart  text-dark font25"></i>
-          <br> 12
-        </p>
-        <p><i class="far fa-comments text-dark font25 mt-3"></i>
-          <br> 2
-        </p>
-        <p><i class="far fa-eye text-dark font25 mt-3"></i>
-          <br> 1211
-        </p>
-      </div>
-    </div>
-  </div>
-</section><!-- end thầy trò viết -->
+{% include 'home/home-post1.html' %}
 <!-- đóng góp bài viết -->
 <section class="bghoa py-5 text-center">
   <div class="container">
     <div class="row justify-content-center">
       <div class="col-lg-6 ">
-        <p class="text-muted ">Một vài lời tâm sự của nhóm sáng lập dự án.</p>
-        <a href="#" class="btn  btn-dark "><i class="fab fa-readme mr-2"></i>Xem Thư ngỏ</a>
+        <p class="text-muted lead fw-semibold">Điều khoản sử dụng trang web</p>
+        <a href="#" class="btn  btn-dark "><i class="bi bi-book me-2"></i>Xem điều khoản</a>
       </div>
     </div>
   </div>
 </section><!-- end đóng góp bài viết -->
-<!-- gặp gỡ -->
-<section class="pt-lg-5 pt-0 bg-light">
-  <div class="container pt-5">
-    <div class="text-center mb-0 mb-lg-5">
-      <h3 class="mb-2 thaytroviet" style="font-family: 'Sedgwick Ave Display', cursive;">Người Anh Sơn thi đua</h3>
-      <img src="https://www.onlygfx.com/wp-content/uploads/2018/01/flower-line-broder-6.png" alt=""
-        class="img-fluid mt-4" style="max-width: 200px">
-      <i class="fas  fa-pencil-alt mb-3" style="font-size:40px"></i>
-    </div>
-    <div class="row ">
-      <div class="col-lg-4  d-flex align-items-end  justify-content-end ">
-        <div class="d-none d-lg-block">
-          <img src="{% static 'imgs/teacher_gapgo.png' %}" class="img-fluid  m-0" style="width: 400px ; " alt="">
-        </div>
-      </div>
-      <div class="col-lg-6 ">
-        <div class="card-header pb-2 p-0 d-flex justify-content-between bg-light mt-5">
-          <h5 class="m-0">Nhân vật nổi bật</h5>
-          <a href="#" class="text-decoration-none ">Xem tất cả <i class="fas fa-arrow-right ml-2"></i></a>
-        </div>
-        <div class="d-lg-none"> <img src="{% static 'imgs/teacher_gapgo.png' %}" class="img-fluid"></div>
-        <h3 class="card-title fontthaytroviet mt-3" style="font-weight: bold;">Nguyễn Văn Học Giỏi
-          <br> <small class="badge text-bg-danger mt-2"> <i class="fas fa-trophy  mr-2"></i> Giải nhất vật lý quốc
-            gia</small>
-        </h3>
-        <small class="text-muted " class="text-decoration-none">Đăng ngày 10/9/2020 trong <a href="#">Tin
-            tức</a></small>
-        <p class="fontthaytroviet mt-4" style="font-size: 20px;">
-          “Ước mơ của mình là trở thành một nhà khoa học. Mình đã phát hiện ra niềm đam mê với Khoa học từ khi mới
-          bước chân vào THCS Anh Sơn. Tại đây, mình có thể dành hàng giờ để đọc sách, mày mò, nghiên cứu, chế tạo tại
-          các phòng thí nghiệm hay Innovation Center..”</p>
-        <div class="d-lg-none">
-          <div class="row mt-4   ">
-            <div class="col  p-0 d-flex justify-content-center border-right"><i class="fas fa-heart  mr-2"></i> <span
-                class="badge badge">4</span> </div>
-            <div class="col p-0  d-flex justify-content-center border-right"><i class="fas fa-comments  mr-2"></i>
-              <span class="badge">4</span>
-            </div>
-            <div class="col  p-0 d-flex justify-content-center"><i class="fas fa-eye mr-2"></i> <span
-                class="badge">4</span></div>
-          </div>
-          <hr>
-        </div>
-        <p class="text-right mt-5 mb-5"> <a href="#" class="text-decoration-none"> Đọc tiếp <i
-              class="fas fa-arrow-right ml-2"></i></a> </p>
-      </div>
-      <div class="col-1 text-center text-secondary ml-5 mt-5 d-none d-lg-block">
-        <p><i class="far fa-heart  text-dark font25"></i>
-          <br> 12
-        </p>
-        <p><i class="far fa-comments text-dark font25 mt-3"></i>
-          <br> 2
-        </p>
-        <p><i class="far fa-eye text-dark font25 mt-3"></i>
-          <br> 1211
-        </p>
-      </div>
-    </div>
-  </div>
-</section><!-- end gặp gỡ -->
+{% include 'home/home-post2.html' %}
 <!-- fun fact -->
 <section class="bg-dark" id="aboutus">
   <div class="container ">
@@ -372,4 +152,19 @@
   </div>
 </section><!-- end about us -->
 <!-- footer -->
+
+
+<script>
+  window.onload = function () {
+    const postDiv = document.getElementById('article')
+    const imgs = postDiv.querySelectorAll("img");
+    for (let i = 0; i < imgs.length; i++) {
+      imgs[i].style = '';
+      imgs[i].className = 'img-fluid rounded-3 shadow-sm my-2';
+      imgs[i].parentElement.className = 'text-center';
+    }
+  };
+</script>
+
+
 {% endblock %}

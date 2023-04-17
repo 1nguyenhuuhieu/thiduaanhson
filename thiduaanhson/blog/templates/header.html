@@ -1,8 +1,11 @@
 {% load static %}
+
 <nav class="navbar navbar-expand-lg bg-body-tertiary shadow-sm sticky-top py-1">
     <div class="container">
       <a class="navbar-brand" href="{% url 'index' %}" id="headerLogo">
+
         <img src="{% static 'imgs/logo.png' %}" alt="Logo thi đua - khen thưởng Anh Sơn" class="img-fluid" width="200px">
+        
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -14,13 +17,13 @@
             <a class="nav-link fs-5 fw-semibold {% if request.path == index %}active-red{% endif %}" aria-current="page" href="{% url 'index' %}">TRANG CHỦ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 fw-semibold" href="#">VĂN BẢN</a>
+            <a class="nav-link fs-5 fw-semibold {% if '/posts/2' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=2 %}">VĂN BẢN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 fw-semibold active-red" href="{% url 'posts' tag_id=6 %}">THI ĐUA</a>
+            <a class="nav-link fs-5 fw-semibold {% if '/posts/1' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=1 %}">THI ĐUA</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 fw-semibold" href="#">KHEN THƯỞNG</a>
+            <a class="nav-link fs-5 fw-semibold {% if '/posts/3' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=3 %}">KHEN THƯỞNG</a>
           </li>
           <li class="nav-item d-flex align-items-center">
             <a class="btn btn-outline-secondary rounded-pill ms-0 ms-sm-5" href="{% url 'admin:index' %}">

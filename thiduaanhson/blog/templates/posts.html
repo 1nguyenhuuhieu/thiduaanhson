@@ -5,7 +5,7 @@
 <div class="shadow-sm border-bottom border-5 border-warning">
   <div class="py-5" class="parallax-window py-5" data-parallax="scroll"
     data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
-    <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">{{ tag.title|upper }}</h1>
+    <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">{{ tag_title|upper }}</h1>
   </div>
 </div>
 <div class="container">
@@ -15,18 +15,23 @@
       <div class="card border-0 hover01">
         <div class="row g-2 g-sm-3">
           <h5 class="mb-1"> <a href="{% url 'post' post_id=post.id %}"
-              class="text-decoration-none link-dark stretched-link">{{post.title}}</a></h5>
+              class="text-decoration-none link-dark stretched-link">{{post.title}}
+              
+            
+            </a></h5>
           <div class="col-4 col-sm-3">
             <div class="hovereffect rounded-3 shadow-sm ">
               {% if post.cover %}
               <img src="{{ post.cover.url }}" class="img-fluid " alt="...">
+              {% elif post.youtube_url %}
+              <img src="https://img.youtube.com/vi/{{ post.youtube_id }}/hqdefault.jpg" class="img-fluid " alt="...">
               {% else %}
               <img src="{% static 'imgs/post-cover.png' %}" class="img-fluid " alt="...">
               {% endif %}
             </div>
           </div>
           <div class="col-8 col-sm-9">
-            <p class="mb-1">{{ post.content|striptags|safe|truncatewords:15 }}</p>
+            <p class="mb-1">{% if post.youtube_url %}<span class="badge text-bg-danger rounded-pill me-2">video</span>{% endif %}{{ post.content|striptags|safe|truncatewords:15 }}</p>
             <p class="m-0"><small class="text-body-secondary fst-italic">{{ post.created_time|naturaltime }}</small></p>
           </div>
         </div>
@@ -40,8 +45,17 @@
       {% if p.page_range %}
       <nav aria-label="Page navigation example">
         <ul class="pagination mt-5">
-          <li class="page-item {% if not current_page.has_previous %} disabled {% endif %}"><a class="page-link"
-              href="#">Trước</a></li>
+          {% if current_page.has_previous %} 
+          <li class="page-item ">
+            <form method="get">
+            <button class="page-link" type="submit" name="page" value="{{current_page.previous_page_number}}">Trước</button>
+              </form>
+            </li>
+            {% else %}
+            <li class="page-item disabled ">
+              <button class="page-link">Trước</button>
+              </li>
+            {% endif %}
           {% for number_page in p.page_range %}
           <li class="page-item">
             <form method="get">
@@ -72,8 +86,8 @@
         <div class="p-3 mb-3 bg-body-tertiary rounded border">
           <h4 class="fst-italic">Danh mục</h4>
           <hr>
-          {% if tag.tag_set.all %}
-          {% for child in tag.tag_set.all %}
+          {% if tag_list %}
+          {% for child in tag_list %}
            <a href="{% url 'posts' tag_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">
             {{ child.title }}
               <span class=" badge text-bg-light rounded-pill">
@@ -88,7 +102,7 @@
           <label for="exampleDataList" class="form-label fw-semibold"><i class="bi bi-search me-2"></i>Tìm kiếm bài viết</label>
           <input type="search" oninput='onInput()' class="form-control" list="datalistSearch" id="searchInput" placeholder="Tên bài viết...">
           <datalist id="datalistSearch">
-            {% for post in tag.post_set.all %}
+            {% for post in posts %}
           <option data-value="{{ post.id }}" value="{{ post.title}}">{{ post.tags_list }}</option>
           {% endfor %}
           </datalist>
@@ -97,7 +111,7 @@
         <h4 class="mb-4 mt-3 border-bottom border-danger border-2 pb-2">Xem nhiều</h4>
         {% for post in top_view_posts %}
         <div class="card border-0">
-        <div class="row g-2 border-bottom my-2 pb-2 ">
+        <div class="row g-2 {% if not forloop.last %} border-bottom {% endif %} my-2 pb-2 ">
           <div class="col-3 ">
             {% if post.cover %}
             <img src="{{ post.cover.url }}" class="img-fluid rounded-3 shadow-sm" alt="...">

@@ -22,7 +22,6 @@ def index(request):
 
 def post(request, post_id):
     post = Post.objects.get(pk=post_id)
-
     reaction_name = f'has_reaction_{post_id}'
     has_reaction = reaction_name in request.session.keys()
 
@@ -62,6 +61,26 @@ def post(request, post_id):
     
     return render(request, 'post.html', context)
 
+
+def category(request, category, page=1):
+
+    posts = Post.objects.filter(category=category).order_by('-created_time')
+
+
+    top_view_posts =  posts.order_by('-view_count')[:5]
+
+    objects = posts
+    p = Paginator(objects, 4)
+    current_page = p.page(page)
+    list_object = p.page(page).object_list
+    context = {
+        'p': p,
+        'list_object': list_object,
+        'current_page': current_page,
+        'tag': tag,
+        'top_view_posts': top_view_posts
+    }
+    return render(request, 'category.html', context)
 
 def tag(request, tag_id=None, page=1):
     if tag_id:

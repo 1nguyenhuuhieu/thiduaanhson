@@ -14,7 +14,7 @@
             <a class="nav-link fs-5 fw-semibold {% if request.path == index %}active-red{% endif %}" aria-current="page" href="{% url 'index' %}">TRANG CHỦ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 fw-semibold {% if 1 in post.tags_list_id %}active-red{% endif %}" href="{% url 'tag' tag_id=1 %}">VĂN BẢN</a>
+            <a class="nav-link fs-5 fw-semibold {% if 'van-ban' == post.category %}active-red{% endif %}" href="{% url 'category' category='van-ban' %}">VĂN BẢN</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-5 fw-semibold {% if 6 in post.tags_list_id %}active-red{% endif %}" href="{% url 'tag' tag_id=6 %}">THI ĐUA</a>

@@ -44,27 +44,21 @@ class Tag(models.Model):
     cover = models.ImageField(upload_to='cover-tag/',verbose_name='ảnh bìa', blank=True, null=True)
     parrent_tag = models.ForeignKey('self', verbose_name='danh mục cha', blank=True, on_delete=models.CASCADE, null=True)
     class Meta:
-        verbose_name = 'thẻ'
-        verbose_name_plural = 'thẻ'
+        verbose_name = 'danh mục'
+        verbose_name_plural = 'danh mục'
 
     def __str__(self):
         return f'{self.title}'
     
 class Post(models.Model):
     title = models.CharField(max_length=1000, verbose_name='tên bài viết')
-    CATEGORY_CHOICES = [
-        ('van-ban', 'VĂN BẢN'),
-        ('thi-dua', 'THI ĐUA'),
-        ('khen-thuong', 'KHEN THƯỞNG'),
-    ]
-    category = models.CharField(max_length=20,choices=CATEGORY_CHOICES, verbose_name='danh mục')
     author = models.ForeignKey('Author', verbose_name='tác giả', blank=True, null=True, on_delete=models.CASCADE)
     is_highlight = models.BooleanField(verbose_name='có phải bài viết nổi bật', default=False)
     is_public = models.BooleanField(verbose_name='có hiển thị bài viết', default=True)
     content = RichTextUploadingField(verbose_name='nội dung')
     youtube_url = models.URLField(max_length=40, blank=True, null=True, verbose_name='URL video youtube', help_text='dán url video youtube vào đây')
     cover = models.ImageField(upload_to='post-covers/', verbose_name='ảnh bìa', blank=True, null=True)
-    tags = models.ManyToManyField(Tag, verbose_name='thẻ', blank=True)
+    tags = models.ManyToManyField(Tag, verbose_name='danh mục', blank=True)
     created_time = models.DateTimeField(auto_now_add=True,null=True)
     updated_time = models.DateTimeField(auto_now=True,null=True)
     view_count = models.IntegerField(blank=True, null=True, default=0, verbose_name='số lượt xem')

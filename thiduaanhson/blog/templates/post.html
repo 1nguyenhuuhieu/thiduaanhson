@@ -8,28 +8,19 @@
       {% include 'include/left_info.html' %}
     </div>
     <div class="col-lg-7 ">
-      <form method="post" action="#" id="printJS-form">
+      <form method="post" id="printJS-form">
         {% if post.cover %}
       <img src="{{ post.cover.url }}" alt="" class=" mb-4 rounded-3 shadow-sm w-100">
         {% endif %}
       <h1>{{ post.title }}</h1>
         {% include 'include/post_info.html' %}
-        <div class="d-flex justify-content-between align-items-center my-3"> 
-          <form method="post">
-            {% csrf_token %}
-            {% if  has_reaction  %}
-            <button type="submit" name="like" class="btn btn-sm btn-outline-danger rounded-pill">Đã thích<i
-                    class="ms-2 bi bi-heart-fill"></i></button>
-            {% else %}
-            <button type="submit" name="like" class="btn btn-sm btn-outline-secondary rounded-pill">Thích<i
-              class="ms-2 bi bi-heart"></i></button>
-            {% endif%}
-          </form>
+        <div class="d-flex justify-content-end align-items-center my-1"> 
+
           <span class="text-muted fst-italic small">
-            <i class="bi bi-hourglass-top me-2"></i>Thời gian đọc <span id="time"></span> phút
+            Thời gian đọc <span id="time"></span> phút
           </span>
         </div>
-      <div class="fs-5 border-top border-danger border-2  pt-2 mt-3 mb-5">
+      <div class="fs-5 mb-4">
         {% if post.youtube_url %}
         {% with video=post %}
           <div class="ratio ratio-16x9 my-3">
@@ -43,6 +34,21 @@
           {% endautoescape %}
       </article>
       </div>
+    </form>
+    <form method="post">
+      {% csrf_token %}
+      <div class="d-flex align-items-center justify-content-end">
+        <span class="fs-6 me-3 fw-semibold">{{ post.like }}<i class="ms-2 bi bi-heart-fill text-danger ms-2"></i></span> 
+        {% if  has_reaction  %}
+        <button type="submit" name="like" class="btn btn-sm btn-outline-danger rounded-pill">
+          Đã thích
+              </button>
+  
+        {% else %}
+        <button type="submit" name="like" class="btn btn-sm btn-outline-secondary rounded-pill">Thích</button>
+        {% endif%}
+      </div>
+
     </form>
     {% include 'include/comment.html' %}
     </div>

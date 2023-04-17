@@ -23,7 +23,7 @@ top: 100px;">
         <small class="fs-6">0</small>
         <form method="post">
             {% csrf_token %}
-            <button type="submit" name="like" class="mt-2 btn btn-lg btn-dan"><i
+            <button type="submit" name="like" class="mt-2 btn btn-lg btn-light"><i
                     class="bi bi-heart{% if  has_reaction  %}-fill text-danger{% endif %}" data-bs-toggle="tooltip"
                     data-bs-title="Lượt thích"></i></button>
         </form>

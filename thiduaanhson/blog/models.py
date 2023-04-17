@@ -74,7 +74,7 @@ class Post(models.Model):
             return None
         
     def tags_list(self):
-        return ';'.join(tag.title for tag in self.tags.all())
+        return '; '.join(tag.title for tag in self.tags.all())
     def tags_list_id(self):
         return list(tag.id for tag in self.tags.all())
     class Meta:

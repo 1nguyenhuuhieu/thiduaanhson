@@ -17,19 +17,19 @@
         <div class="d-flex justify-content-between align-items-center my-3"> 
           <form method="post">
             {% csrf_token %}
-            <button type="submit" name="like" class="btn btn-sm btn-outline-secondary rounded-pill">{% if  has_reaction  %}Đã thích{% else %}Thích{% endif%}<i
-                    class="ms-2 bi bi-heart{% if  has_reaction  %}-fill text-danger{% endif %}"></i></button>
+            {% if  has_reaction  %}
+            <button type="submit" name="like" class="btn btn-sm btn-outline-danger rounded-pill">Đã thích<i
+                    class="ms-2 bi bi-heart-fill"></i></button>
+            {% else %}
+            <button type="submit" name="like" class="btn btn-sm btn-outline-secondary rounded-pill">Thích<i
+              class="ms-2 bi bi-heart"></i></button>
+            {% endif%}
           </form>
-        
-
           <span class="text-muted fst-italic small">
             <i class="bi bi-hourglass-top me-2"></i>Thời gian đọc <span id="time"></span> phút
           </span>
         </div>
-
-
       <div class="fs-5 border-top border-danger border-2  pt-2 mt-3 mb-5">
-
         {% if post.youtube_url %}
         {% with video=post %}
           <div class="ratio ratio-16x9 my-3">
@@ -37,7 +37,6 @@
           </div>
           {% endwith %}
         {% endif %}
-
         <article id="article">
           {% autoescape off %}
           {{ post.content }}
@@ -47,7 +46,6 @@
     </form>
     <hr>
     {% include 'include/comment.html' %}
-
     </div>
     <div class="col-lg-4" >
       <div style="position: sticky;
@@ -102,7 +100,5 @@
   document.getElementById("time").innerText = time;
 }
 readingTime();
-
-
 </script>
 {% endblock %}

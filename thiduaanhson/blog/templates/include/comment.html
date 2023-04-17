@@ -20,6 +20,12 @@
 <hr>
 <h4 class="mb-4">{{ post.comment_set.all|length }} bình luận</h4>
 {% for comment in post.comment_set.all %}
-<h5>{{ comment.author }}<small class="text-muted ms-2 fst-italic">{{ comment.created_time|naturaltime }}</small> </h5>
-<p>{{comment.comment}}</p>
+<div class="d-flex">
+  <h6>{{ comment.author }} </h6>
+  <small class="text-muted ms-2 fst-italic">{{ comment.created_time|naturaltime }}</small>
+
+</div>
+<p>{{comment.comment}}
+  <hr class="w-25">
+</p>
 {% endfor %}

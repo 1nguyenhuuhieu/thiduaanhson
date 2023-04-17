@@ -5,7 +5,7 @@
 <div class="shadow-sm border-bottom border-5 border-warning">
   <div class="py-5" class="parallax-window py-5" data-parallax="scroll"
     data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
-    <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">{{ category.title|upper }}</h1>
+    <h1 class="display-4 fw-semibold text-light text-center" style="font-family: 'Oswald', sans-serif;">{{ tag.title|upper }}</h1>
   </div>
 </div>
 <div class="container">
@@ -56,28 +56,31 @@
     </div>
     <div class="col-lg-4">
       <div>
-        <div class="p-4 mb-3 bg-body-tertiary rounded border">
+        <div class="p-3 mb-3 bg-body-tertiary rounded border">
           <h4 class="fst-italic">Danh mục</h4>
           <hr>
           {% if tag.tag_set.all %}
           {% for child in tag.tag_set.all %}
-           <a href="{% url 'tag' tag_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">{{ child.title }}</a>
+           <a href="{% url 'tag' tag_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">
+            {{ child.title }}
+              <span class=" badge text-bg-light rounded-pill">
+                {{ child.post_set.all|length }}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+           </a>
           {% endfor %}
           {% endif %}
         </div>
         <div>
           <label for="exampleDataList" class="form-label fw-semibold"><i class="bi bi-search me-2"></i>Tìm kiếm bài viết</label>
-          <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Tên bài viết...">
-          <datalist id="datalistOptions">
-          <option value="San Francisco">
-          <option value="New York">
-          <option value="Seattle">
-          <option value="Los Angeles">
-          <option value="Chicago">
+          <input oninput='onInput()' class="form-control" list="datalistSearch" id="searchInput" placeholder="Tên bài viết...">
+          <datalist id="datalistSearch">
+            {% for post in tag.post_set.all %}
+          <option data-value="{{ post.id }}" value="{{ post.title}}">{{ post.tags_list }}</option>
+          {% endfor %}
           </datalist>
       </div>
       {% if top_view_posts %}
-
         <h4 class="mb-4 mt-3 border-bottom border-danger border-2 pb-2">Xem nhiều</h4>
         {% for post in top_view_posts %}
         <div class="card border-0">
@@ -101,4 +104,23 @@
     </div>
   </div>
 </div>
+
+<script>
+  function onInput() {
+    var val = document.getElementById("searchInput").value;
+    var opts = document.getElementById('datalistSearch').childNodes;
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].value === val) {
+        // An item was selected from the list!
+        // yourCallbackHere()
+        const postID = opts[i].getAttribute('data-value');
+        const targetURL = "{% url 'post' post_id=999999 %}"
+        const postURL = targetURL.replace('999999', postID)
+        window.location.href = postURL
+
+        break;
+      }
+    }
+  }
+</script>
 {% endblock %}

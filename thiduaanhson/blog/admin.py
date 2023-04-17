@@ -19,6 +19,7 @@ class PostAdmin(admin.ModelAdmin):
 
 admin.site.register(Author)
 admin.site.register(Comment)
+admin.site.register(Quote)
 
 
 @admin.register(Tag)

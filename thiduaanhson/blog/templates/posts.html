@@ -43,11 +43,24 @@
           <li class="page-item {% if not current_page.has_previous %} disabled {% endif %}"><a class="page-link"
               href="#">Trước</a></li>
           {% for number_page in p.page_range %}
-          <li class="page-item"><a class="page-link {% if current_page.number == number_page %}active{% endif %}"
-              href="#">{{number_page}}</a></li>
+          <li class="page-item">
+            <form method="get">
+            <button class="page-link {% if current_page.number == number_page %}active{% endif %}"
+               type="submit" name="page" value="{{number_page}}">{{number_page}}</button>
+            </form>
+            </li>
           {% endfor %}
-          <li class="page-item {% if not current_page.has_next %} disabled {% endif %}"><a class="page-link"
-              href="#">Sau</a></li>
+          {% if current_page.has_next %} 
+          <li class="page-item ">
+            <form method="get">
+            <button class="page-link" type="submit" name="page" value="{{current_page.next_page_number}}">Sau</button>
+              </form>
+            </li>
+            {% else %}
+            <li class="page-item disabled ">
+              <button class="page-link">Sau</button>
+              </li>
+            {% endif %}
         </ul>
       </nav>
       <p class="text-muted small fst-italic">Trang {{current_page.number}} trong {{p.num_pages}}. Tổng số {{ p.count }}
@@ -61,7 +74,7 @@
           <hr>
           {% if tag.tag_set.all %}
           {% for child in tag.tag_set.all %}
-           <a href="#" class="btn btn-sm btn-warning m-1 rounded-pill">
+           <a href="{% url 'posts' tag_id=child.id %}" class="btn btn-sm btn-warning m-1 rounded-pill">
             {{ child.title }}
               <span class=" badge text-bg-light rounded-pill">
                 {{ child.post_set.all|length }}
@@ -73,7 +86,7 @@
         </div>
         <div>
           <label for="exampleDataList" class="form-label fw-semibold"><i class="bi bi-search me-2"></i>Tìm kiếm bài viết</label>
-          <input oninput='onInput()' class="form-control" list="datalistSearch" id="searchInput" placeholder="Tên bài viết...">
+          <input type="search" oninput='onInput()' class="form-control" list="datalistSearch" id="searchInput" placeholder="Tên bài viết...">
           <datalist id="datalistSearch">
             {% for post in tag.post_set.all %}
           <option data-value="{{ post.id }}" value="{{ post.title}}">{{ post.tags_list }}</option>

@@ -116,3 +116,15 @@ class Author(models.Model):
 
     def __str__(self):
         return f'{self.name}' 
+
+
+class Quote(models.Model):
+    title = models.TextField(verbose_name='trích dẫn')
+    author = models.CharField(max_length=50, verbose_name='tác giả')
+
+    class Meta:
+        verbose_name = 'trích dẫn'
+        verbose_name_plural = 'trích dẫn'
+
+    def __str__(self):
+        return f'{self.title}' 

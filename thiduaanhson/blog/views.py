@@ -5,17 +5,20 @@ from django.shortcuts import get_object_or_404
 import random
 
 def index(request):
-    request.session['test'] = random.random()
     slides = Slide.objects.filter(is_show=True)[:3]
     highlight_post = Post.objects.latest('is_highlight', 'created_time')
     videos = Post.objects.filter(tags__title='Video').order_by('created_time')[:3]
-    print(videos)
-    latest_posts = Post.objects.all().order_by('-created_time')[:5]
+    
+    latest_post = Post.objects.latest('created_time')
+    latest_posts = Post.objects.all().exclude(id=latest_post.id).order_by('-created_time')[:4]
+    quotes = Quote.objects.all()
     context = {
         'videos': videos,
         'slides': slides,
         'highlight_post': highlight_post,
-        'latest_posts': latest_posts
+        'latest_posts': latest_posts,
+        'latest_post': latest_post,
+        'quotes': quotes
     }
 
     return render(request, 'index.html', context)
@@ -50,7 +53,6 @@ def post(request, post_id):
     post = Post.objects.get(pk=post_id)
     has_reaction = reaction_name in request.session.keys()
     author_liked = sum(post.like for post in Post.objects.filter(author=post.author))
-    print(author_liked)
 
     context = {
         'post': post,
@@ -62,14 +64,16 @@ def post(request, post_id):
     return render(request, 'post.html', context)
 
 def posts(request, tag_id=None):
+    page=1
+    if request.method == 'GET' and 'page' in request.GET:
+        page = request.GET['page']
+
     if tag_id:
         posts = Post.objects.filter(tags=tag_id).order_by('-created_time')
+        tag = get_object_or_404(Tag, pk=tag_id)
     else:
         posts = Post.objects.all().order_by('-created_time')
-
     top_view_posts =  posts.order_by('-view_count')[:5]
-    page=1
-    tag = get_object_or_404(Tag, pk=tag_id)
     objects = posts
     p = Paginator(objects, 4)
     current_page = p.page(page)

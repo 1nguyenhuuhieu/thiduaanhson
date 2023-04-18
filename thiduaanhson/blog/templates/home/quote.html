@@ -1,9 +1,9 @@
 {% load static %}
 {% load humanize %}
 <div class="parallax-window py-5" data-parallax="scroll"
-  data-image-src="{% static 'imgs/spotlight_quote.jpg' %}" style="height: 200px;">
-  <div id="carouselExampleAutoplaying2" class="carousel slide" data-bs-ride="carousel"  >
-    <div class="carousel-inner">
+  data-image-src="{% static 'imgs/spotlight_quote.jpg' %}">
+  <div id="carouselExampleAutoplaying2" class="carousel slide" data-bs-ride="carousel"  style="height: 200px;" >
+    <div class="carousel-inner"  style="height: 200px;">
       {% for quote in quotes %}
       <div class="carousel-item {% if forloop.first %}active {% endif %}" >
         <div class="container-fluid">

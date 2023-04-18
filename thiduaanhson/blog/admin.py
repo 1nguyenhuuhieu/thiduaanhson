@@ -7,7 +7,6 @@ from .models import *
 class TagInline(admin.StackedInline):
     model = Tag
 
-
 @admin.register(Slide)
 class SlideAdmin(admin.ModelAdmin):
     list_display = ('title', 'is_show')
@@ -31,7 +30,7 @@ admin.site.register(Quote)
 @admin.register(Tag)
 class TagAdmin(admin.ModelAdmin):
     readonly_fields = ('id', )
-    inlines = ('TagInline', )
+    inlines = ['TagInline', ]
 
     
 

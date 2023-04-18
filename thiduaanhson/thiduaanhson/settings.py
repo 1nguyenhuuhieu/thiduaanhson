@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-p-(wl(v%yfth=nwro1*l13k+^4_95pl035a8i_h9614(%23qbh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['thiduakhenthuonganhson.vn',]
 
 
 # Application definition
@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'ckeditor',
     'ckeditor_uploader',
     'django.contrib.humanize',
+    'ubuntu_deployer',
 
     'blog'
 ]

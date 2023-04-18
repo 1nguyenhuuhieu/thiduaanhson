@@ -19,7 +19,7 @@ class PostAdmin(admin.ModelAdmin):
     list_filter = ('author', 'is_highlight', 'is_public',  'tags')
     filter_horizontal = ('tags',)
     readonly_fields = ('view_count', 'like')
-    search_fields = ("title", 'author.name', 'tags.title',)
+    search_fields = ("title", 'author__name', 'tags__title',)
 
 admin.site.register(Author)
 admin.site.register(Comment)

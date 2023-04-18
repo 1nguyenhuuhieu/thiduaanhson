@@ -17,10 +17,10 @@
             <a class="nav-link fs-5 fw-semibold {% if request.path == index %}active-red{% endif %}" aria-current="page" href="{% url 'index' %}">TRANG CHỦ</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 fw-semibold {% if '/posts/2' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=2 %}">VĂN BẢN</a>
+            <a class="nav-link fs-5 fw-semibold {% if '/posts/1' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=1 %}">VĂN BẢN</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link fs-5 fw-semibold {% if '/posts/1' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=1 %}">THI ĐUA</a>
+            <a class="nav-link fs-5 fw-semibold {% if '/posts/2' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=2 %}">THI ĐUA</a>
           </li>
           <li class="nav-item">
             <a class="nav-link fs-5 fw-semibold {% if '/posts/3' == request.path %} active-red {% endif %}" href="{% url 'posts' tag_id=3 %}">KHEN THƯỞNG</a>

@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-p-(wl(v%yfth=nwro1*l13k+^4_95pl035a8i_h9614(%23qbh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['thiduakhenthuonganhson.vn','112.78.1.69', 'localhost']
+ALLOWED_HOSTS = ['thiduakhenthuonganhson.vn','112.78.1.69', 'localhost', '*']
 
 
 # Application definition
@@ -129,7 +129,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
+# CKEDITOR_BASEPATH = "/static/ckeditor/ckeditor/"
 CKEDITOR_UPLOAD_PATH = "uploads/"
 CKEDITOR_IMAGE_BACKEND = "ckeditor_uploader.backends.PillowBackend"
 CKEDITOR_FORCE_JPEG_COMPRESSION = True

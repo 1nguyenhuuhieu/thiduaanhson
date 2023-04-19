@@ -22,7 +22,7 @@ top: 100px;">
                 <i class="bi bi-chat-left"></i>
             </span>
         </a>
-        <small class="fs-6">0</small>
+        <small class="fs-6">{{ post.comment_set.all|length }}</small>
         <form method="post">
             {% csrf_token %}
             <button type="submit" name="like" class="mt-2 btn btn-lg btn-light"><i

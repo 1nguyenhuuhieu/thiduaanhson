@@ -13,7 +13,7 @@
         <div class="col-lg-4 d-flex align-items-center  justify-content-end ">
           <div class="d-none d-lg-block">
             {% if home_post3.cover %}
-            <img src="{{ home_post3.cover.url }}" class="img-fluid m-0" style="width: 300px;">
+            <img src="{{ home_post3.cover.url }}" class="img-fluid m-0 border border-2 border-danger shadow-sm" style="width: 300px;">
             {% else %}
             <img src="{% static 'imgs/teacher_gapgo.png' %}" class="img-fluid m-0" style="width: 300px;">
             {% endif %}

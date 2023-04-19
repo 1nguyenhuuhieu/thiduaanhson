@@ -12,8 +12,14 @@ def index(request):
     latest_post = Post.objects.latest('created_time')
     latest_posts = Post.objects.all().exclude(id=latest_post.id).order_by('-created_time')[:4]
     quotes = Quote.objects.all()
-    home_post2 = Post.objects.filter(tags=6).latest('created_time')
-    home_post3 = Post.objects.filter(tags=5).latest('created_time')
+    try:
+        home_post2 = Post.objects.filter(tags=6).latest('created_time')
+    except:
+        home_post2 = None
+    try:
+        home_post3 = Post.objects.filter(tags=5).latest('created_time')
+    except:
+        home_post3 = None
     author_liked = sum(post.like for post in Post.objects.filter(author=home_post2.author))
     author2_liked = sum(post.like for post in Post.objects.filter(author=home_post3.author))
 

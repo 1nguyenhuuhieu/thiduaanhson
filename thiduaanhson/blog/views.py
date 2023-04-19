@@ -9,7 +9,7 @@ def index(request):
     highlight_post = Post.objects.latest('is_highlight', 'created_time')
     videos = Post.objects.filter(tags__title='Video').order_by('created_time')[:3]
     
-    latest_post = Post.objects.filter(is_show=True).latest('created_time')
+    latest_post = Post.objects.latest('created_time')
     latest_posts = Post.objects.all().exclude(id=latest_post.id).order_by('-created_time')[:4]
     quotes = Quote.objects.all()
     try:

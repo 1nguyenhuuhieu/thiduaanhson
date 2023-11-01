@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import *
+from .forms import MyModelAdminForm
 # Register your models here.
 
 
@@ -14,12 +15,9 @@ class SlideAdmin(admin.ModelAdmin):
 
 @admin.register(Post)
 class PostAdmin(admin.ModelAdmin):
-    list_display = ('author', 'title', 'is_highlight', 'is_public', 'youtube_url')
-    list_display_links = ('title', )
-    list_filter = ('author', 'is_highlight', 'is_public',  'tags')
-    filter_horizontal = ('tags',)
-    readonly_fields = ('view_count', 'like')
-    search_fields = ("title", 'author__name', 'tags__title',)
+    
+    form = MyModelAdminForm
+    change_form_template = 'admin/custom_ck.html'
 
 admin.site.register(Author)
 admin.site.register(Comment)
